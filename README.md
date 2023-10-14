@@ -1,5 +1,10 @@
 # Jp-PHP-proj
 Projekt na Języki programowania - PHP
+## Autorzy Projektu
+> - Jakub Mikołajczak
+> - Jakub Kumer
+> - Wojciech Mułkowski
+> - Kacper Łokietek
 
 ## Wymagania projektu
 > - zawiera system użytkowników z możliwością rejestracji, logowania i wylogowania,

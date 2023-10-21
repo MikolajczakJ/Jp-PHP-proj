@@ -5,7 +5,11 @@ Projekt na Języki programowania - PHP
 > - Jakub Kumer
 > - Wojciech Mułkowski
 > - Kacper Łokietek
-
+## Komendy do gita
+> - git clone {link do repozytorium} - klonuje repo z linku
+> - git add *  - dodaje wszystkie wprowadzone zmiany
+> - git commit -m "info o zmianach" - zatwierdza wszystkie zmiany
+> - git push - wysyła zmiany do repozytorium
 ## Wymagania projektu
 > - zawiera system użytkowników z możliwością rejestracji, logowania i wylogowania,
 > - zawiera przynajmniej jeden formularz, którego dane po przesłaniu są walidowane, czyszczone, przetwarzane i zapisywane w bazie danych,

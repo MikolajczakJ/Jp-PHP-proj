@@ -32,14 +32,16 @@ class User{
             return null;    
         }
     }
-    // dodawanie użytkownika
+    // dodawanie użytkownika zwraca true jeśli użytkownik zostanie dodany, fale jeśli nie
     static function addUser($user, $conn){
         echo $user->surname;
         $stmt= $conn->prepare("INSERT INTO `users` (`name`, `surname`, `email`, `password`) VALUES (?, ?, ?, ?);");
         $pass = User::hashUserPassword($user->password);
         $stmt ->bind_param('ssss',$user->name,$user->surname,$user->email,$pass);
         $stmt->execute();
+        $outcome =$stmt->affected_rows==1;
         $stmt->close();
+        return $outcome;
 
     }
     // aktualizacja użytkownika znajdującego się pod określonym id 

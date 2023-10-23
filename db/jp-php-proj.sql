@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 21 Paź 2023, 11:24
--- Wersja serwera: 10.4.27-MariaDB
--- Wersja PHP: 8.0.25
+-- Generation Time: Paź 23, 2023 at 01:04 PM
+-- Wersja serwera: 10.4.28-MariaDB
+-- Wersja PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `jp-php-proj-main`
+-- Database: `jp-php-proj`
 --
 
 -- --------------------------------------------------------
@@ -61,7 +61,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Zrzut danych tabeli `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`id`, `role`) VALUES
@@ -79,8 +79,18 @@ CREATE TABLE `users` (
   `name` varchar(60) NOT NULL,
   `surname` varchar(60) NOT NULL,
   `email` varchar(60) NOT NULL,
-  `password` varchar(60) NOT NULL
+  `password` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id_user`, `name`, `surname`, `email`, `password`) VALUES
+(1, 'aaa', 'bbb', 'jak@gm.com', '$argon2id$v=19$m=65536,t=4,p=1$VjZldE9RRnEyT2RtMnFCTQ$jmMcNR'),
+(2, 'jak', 'mik', 'test@gm.csa', '$argon2id$v=19$m=65536,t=4,p=1$eGFJcTBIazhVbWx4V2hiTQ$IzLp7Z'),
+(3, 'jak', 'mik', 'test@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$TW9wM3h6a0ZnMWljSTI3ZQ$S43YGL'),
+(4, 'a', 'a', 'a@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$NVgycW12dno1VDNFRFJHUQ$B3sV/JGztGmddNDsVdY6XHs0j3x/39WCaavjhaNQ+5Q');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -113,39 +123,39 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT dla zrzuconych tabel
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT dla tabeli `cars`
+-- AUTO_INCREMENT for table `cars`
 --
 ALTER TABLE `cars`
   MODIFY `id_car` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT dla tabeli `rent`
+-- AUTO_INCREMENT for table `rent`
 --
 ALTER TABLE `rent`
   MODIFY `id_rent` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT dla tabeli `role`
+-- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT dla tabeli `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Ograniczenia dla zrzutów tabel
+-- Constraints for dumped tables
 --
 
 --
--- Ograniczenia dla tabeli `rent`
+-- Constraints for table `rent`
 --
 ALTER TABLE `rent`
   ADD CONSTRAINT `rent_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `cars` (`id_car`) ON DELETE CASCADE ON UPDATE CASCADE,

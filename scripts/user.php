@@ -1,6 +1,4 @@
 <?php
-require_once "./connect.php";
-
 class User{
     public $id;
     public $name;
@@ -18,14 +16,21 @@ class User{
         return password_hash($password, PASSWORD_ARGON2ID);
     }
     // Szuka użytkownika w bazie danych i zwraca jego dane
-    static function findUser($user){
+    static function findUser($email,$password,$conn){
         $stmt= $conn->prepare("SELECT * FROM users where email=?");
-        $stmt ->bind_param('s',$user->email);
+        $stmt ->bind_param('s',$email);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
         $row = $result->fetch_assoc();
-        return $row;
+        echo $password;
+        echo $row['password'];
+        if(password_verify($password,$row['password'])){
+            return $row;
+        }
+        else{
+            return null;    
+        }
     }
     // dodawanie użytkownika
     static function addUser($user, $conn){

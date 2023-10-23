@@ -45,7 +45,7 @@ background: linear-gradient(171deg, rgba(76,72,137,1) 0%, rgba(29,29,208,1) 35%,
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Hasło" name="haslo">
+          <input type="password" class="form-control" placeholder="Hasło" name="password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

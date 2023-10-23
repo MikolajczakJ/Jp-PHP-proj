@@ -1,3 +1,4 @@
 <?php
-$conn = new mysqli("localhost","root","","jp-php-proj-main");
+$conn = new mysqli("localhost","root","","jp-php-proj");
+
 ?>

@@ -1,0 +1,1 @@
+wyjscie = wejscie_1 + wejscie_2

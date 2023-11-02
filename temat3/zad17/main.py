@@ -1,0 +1,1 @@
+wyjscie = wejscie[::2]

@@ -1,1 +1,0 @@
-print(wejscie[5:],sep='\n')

@@ -1,1 +1,0 @@
-wyjscie = wejscie[1::2]

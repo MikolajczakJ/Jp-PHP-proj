@@ -1,1 +1,0 @@
-print(wejscie[-1])

@@ -21,5 +21,9 @@ Projekt na Języki programowania - PHP
 > - wysyłanie maili potwierdzających wypełninie formularza (w przypadku założenia konta/ zmiany hasła oraz wypożyczenia samochodu)
 > - konfiguracja serwera Apache
 
+## Rzeczy do zrobienia
+> - Wyskakujące powiadomienia przy wprowadzeniu nieporawnych danych (email, hasło, imie i nazwisko), do wykorzystania są funkcje z pliku reg.php
+
+
 Trzeba pamiętać, że projekt ma być zamieszczony na gitlabie i, że mamy korzystać z dockera
 ## Temat projektu **Wypożyczalnia samochodów** (może ulec zmianie)

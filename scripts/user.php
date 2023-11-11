@@ -23,8 +23,6 @@ class User{
         $result = $stmt->get_result();
         $stmt->close();
         $row = $result->fetch_assoc();
-        echo $password;
-        echo $row['password'];
         if(password_verify($password,$row['password'])){
             return $row;
         }

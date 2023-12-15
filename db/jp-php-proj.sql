@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Paź 23, 2023 at 01:04 PM
+-- Generation Time: Dec 04, 2023 at 01:51 PM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -34,6 +34,22 @@ CREATE TABLE `cars` (
   `description` varchar(255) NOT NULL,
   `img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `cars`
+--
+
+INSERT INTO `cars` (`id_car`, `brand`, `model`, `description`, `img`) VALUES
+(1, 'BMW', 'M5 Competition xDrive 2023', '4.4 V8, 625 KM, 750 Nm z 8-biegową przekładnią automatyczną i napędem na wszystkie koła, przyspieszenie 0-100 km/h: 3,4 s, prędkość maksymalna: 250 km/h, średnie zużycie paliwa: 11,1-11,3 l/100 km.', 'https://i.pinimg.com/564x/90/c4/71/90c47122b54397c32883aa4ab6f24665.jpg'),
+(3, 'Mercedes-Benz', 'E63 AMG S 2023', '4,0-litrowy silnik V8, 603 koni mechanicznych', 'https://i.pinimg.com/564x/9e/d8/cb/9ed8cbbf8e2c7bf2c49d468b7a19239c.jpg'),
+(4, 'Lamborghini', 'Huracan STO', 'MOC (CV) / MOC (KW) \r\n640 CV / 470 kW\r\nMAKSYMALNA PRĘDKOŚĆ 310 km/h \r\n0-100 KM/H w 3,0 s \r\nRok produkcji: 2022', 'https://i.pinimg.com/564x/5a/4d/ac/5a4dacd7a78d9657a017369cf66eae6c.jpg'),
+(5, 'Audi', 'RS3', 'RS 3 TFSI quattro (2.5 R5; 400 KM, 500 Nm) z 7-biegową przekładnią dwusprzęgłową S tronic i napędem na wszystkie koła, przyspieszenie 0-100 km/h: 3,8 s, prędkość maksymalna: 250 km/h, średnie zużycie paliwa: 9,0-9,5 (8,9-9,4) l/100 km', 'https://i.pinimg.com/564x/b1/58/3a/b1583aea191588d3c4f74ad53d4aa8cf.jpg'),
+(6, 'Audi', 'RSQ8', 'Z pojemności 4,0 l osiąga moc 600 KM i moment obrotowy 800 Nm, które zamieniają SUV-a coupe Audi w prawdziwy pocisk. \r\nPrzyspieszenie do setki zajmuje tylko 3,8 s, a 200 km/h zobaczymy na liczniku już po 13,7 s.', 'https://i.pinimg.com/564x/2e/e8/95/2ee895778a9f6125c9113bf47617c20d.jpg'),
+(7, 'Porsche', 'Cayenne GTS', 'Moc silnika spalinowego\r\n338 kW / 460 KM \r\nSilnik Benzyna \r\nŁączne zużycie paliwa (WLTP) 13,2 l/100 km\r\nRok produkcji 2022', 'https://i.pinimg.com/564x/ac/cb/42/accb42e12abd6d3c8467aa6a3a872a1c.jpg'),
+(9, 'BMW', 'X6 M Competition', 'Rodzaj paliwa Benzin\r\nPojemność skokowa 4.395 cm3\r\nPrzyspieszenie 3,8 s\r\nEmisja CO2 304 g/km\r\nZbiornik paliwa 83 l\r\nMoc znamionowa 625 hp (460 kW)\r\nPrędkość maksymalna 290 km/h\r\nLiczba miejsc 5\r\nCykl mieszany 13,4 l/100 km', 'https://i.pinimg.com/564x/22/bd/79/22bd79ccb7a9688c868dd66680c63a9b.jpg'),
+(10, 'Mercedes', 'AMG GLE Coupé 63', 'GLE 63 S 4Matic+ Coupe (4.0 V8; 612+22 KM, 850 Nm) z 9-biegową przekładnią automatyczną AMG SPEEDSHIFT TCT 9G i napędem na wszystkie koła, przyspieszenie 0-100 km/h: 3,8 s, prędkość maksymalna: 280 km/h, średnie zużycie paliwa: 12,2-12,5 l/100 km', 'https://i.pinimg.com/564x/bf/5a/ca/bf5aca2ba328e837ee7f8823b8a52192.jpg'),
+(11, 'Audi', 'e-tron GT', 'Moc 350 kW\r\nPrzyspieszenie (0–100 km/h) 4,1 sek.\r\nZasięg (WLTP) do 501 km', 'https://i.pinimg.com/564x/64/b5/fd/64b5fde9bf1d22a70ae98222ae47596b.jpg'),
+(12, 'Porsche', '911 GT3', 'Silnik 4.0 Benzyna\r\nMoc 510 KM / 470 NM\r\nSkrzynia biegów automatyczna 7-biegowa PDK\r\nNapęd na tylne koła', 'https://i.pinimg.com/564x/db/3f/de/db3fde08b08b227e089f0c7a7b568df8.jpg');
 
 -- --------------------------------------------------------
 
@@ -130,7 +146,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `id_car` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_car` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `rent`

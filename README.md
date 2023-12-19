@@ -22,13 +22,6 @@ Projekt na Języki programowania - PHP
 > - konfiguracja serwera Apache
 
 ## Rzeczy do zrobienia
-<<<<<<< HEAD
-> - Wyskakujące powiadomienia przy wprowadzeniu nieporawnych danych (email, hasło, imie i nazwisko), do wykorzystania są funkcje z pliku reg.php
-
-
-Trzeba pamiętać, że projekt ma być zamieszczony na gitlabie i, że mamy korzystać z dockera
-## Temat projektu **Wypożyczalnia samochodów** (może ulec zmianie)
-=======
 > - Wyskakujące powiadomienia przy wprowadzeniu nieporawnych danych (email, hasło, imie i nazwisko), do wykorzystania są funkcje z pliku reg.php. <br> 
     >> - Wstęnie robimy powiadomienia w stylu nie udało się zalogować, jeśli będziemy mieli czas zaminimy na szczegóły, np pusty email, hasła się nie zgadzają, hasło nie spełnia wymagań itp <br>
     >> - powiadomienie o wylogowaniu użytkownika <br>
@@ -64,4 +57,3 @@ Trzeba pamiętać, że projekt ma być zamieszczony na gitlabie i, że mamy korz
 
 Trzeba pamiętać, że projekt ma być zamieszczony na gitlabie i, że mamy korzystać z dockera
 ## Temat projektu **Wypożyczalnia samochodów**
->>>>>>> master

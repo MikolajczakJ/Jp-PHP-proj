@@ -20,38 +20,43 @@ Projekt na Języki programowania - PHP
 > - odpowiedź zwrotna w postaci pliku innego niż HTML
 > - wysyłanie maili potwierdzających wypełninie formularza (w przypadku założenia konta/ zmiany hasła oraz wypożyczenia samochodu)
 > - konfiguracja serwera Apache
+<br><br>
+## Kto co robi
+Jakub Mik
+> - Strona od administratora (lista użytkowników, samochodów, i wynajmu, możliwość dodawania i edytowania samochodów oraz nadawanie praw admina)
+> - mailer
 
 ## Rzeczy do zrobienia
+> - dodać role w tabeli użytkownika
 > - Wyskakujące powiadomienia przy wprowadzeniu nieporawnych danych (email, hasło, imie i nazwisko), do wykorzystania są funkcje z pliku reg.php. <br> 
-    >> - Wstęnie robimy powiadomienia w stylu nie udało się zalogować, jeśli będziemy mieli czas zaminimy na szczegóły, np pusty email, hasła się nie zgadzają, hasło nie spełnia wymagań itp <br>
-    >> - powiadomienie o wylogowaniu użytkownika <br>
+    1.Wstęnie robimy powiadomienia w stylu nie udało się zalogować, jeśli będziemy mieli czas zaminimy na szczegóły, np pusty email, hasła się nie zgadzają, hasło nie spełnia wymagań itp <br>
+    2.powiadomienie o wylogowaniu użytkownika <br>
 
 
 > - Podział na strefę dla użytkowników i niezalogowanych <br>
-    >> - Zalogowany widzi to czego nie widzi niezalogowany i odwrotnie. Czyli trzeba upewnić się że zalogowany nie może wejść na stronę z logowaniem, a niezalogowany np na stronę z formularzem wynajmu i coś jeszcze by trzeba było wymyśleć <br>
-    >> - przycisk do rejestracji i logowania na navbarze, zalogowany widzi przycisk wyloguj <br>
-    >> - stronka też musi być widocznie inna dla niezalogowanych i zalogowanych <br>
-    >> - każda strona musi być odpowiednio zabezpieczona, jeśli użytkownik nie ma uprawnień to nie wchodzi <br>
-    >> - zalogowany użytkownik będzie miał możliwość zmiany hasła, czyli trzeba będzie stworzyć kolejną stronę, w stylu ustawienia konta czy coś <br>
+    1.Zalogowany widzi to czego nie widzi niezalogowany i odwrotnie. Czyli trzeba upewnić się że zalogowany nie może wejść na stronę z logowaniem, a niezalogowany np na stronę z formularzem wynajmu i coś jeszcze by trzeba było wymyśleć <br>
+    2.przycisk do rejestracji i logowania na navbarze, zalogowany widzi przycisk wyloguj <br>
+    3.stronka też musi być widocznie inna dla niezalogowanych i zalogowanych <br>
+    4.każda strona musi być odpowiednio zabezpieczona, jeśli użytkownik nie ma uprawnień to nie wchodzi <br>
+    5.zalogowany użytkownik będzie miał możliwość zmiany hasła, czyli trzeba będzie stworzyć kolejną stronę, w stylu ustawienia konta czy coś <br>
 
 
 
 > - Logowanie i rejestracja<br>
-    >> - Użytkownik po rejestracji zostaje automatycznie zalogowany <br>
-    >> - zabezpieczenie formularzy logowania i rejestracji (sprawdzenie czy wyagane pola nie są puste po stronie php, wprowadzenie regexów do hasła, czyszczenie tych stringów, żeby nie było zbędnych spacji itp[ jak na zajęciach z php w poprzednim semestrze]) <br>
-    >> - mailowe potwierdzenie rejestracji <br>
-    >> - formularz przypomnienia hasła, z mailem <br>
+    1.Użytkownik po rejestracji zostaje automatycznie zalogowany <br>
+    2.zabezpieczenie formularzy logowania i rejestracji (sprawdzenie czy wyagane pola nie są puste po stronie php, wprowadzenie regexów do hasła, czyszczenie tych stringów, żeby nie było zbędnych spacji itp[ jak na zajęciach z php w poprzednim semestrze]) <br>
+    3.mailowe potwierdzenie rejestracji <br>
+    4.formularz przypomnienia hasła, z mailem <br>
 
 
 > - dodatkowe rzeczy<br>
-    >> - odpowiedź zwrotna w postaci innego pliku niż html, np można zrobić tak, że po złożeniu zamówienia, użytkownik dostaje możliwość pobrania pdfa ze szczegółami np data, kto, gdzie, jaki samochód, id zamówienia <br>
-    >> - przyjmowanie plików od użytkownika - można zrobić to tak, że np admin przy dodawaniu samochodów może załadować zdjęcie. trzeba pamiętać o zabezpieczeniach <br>
-    >> - powiadomienia mailowe <br>
-    >> - konfiguracja serwera apache <br>
-        >>> - routing <br>
-        >>> - https<br>
-        >>> - zabezpieczenie folderów statycznych <br>
-
+    1.odpowiedź zwrotna w postaci innego pliku niż html, np można zrobić tak, że po złożeniu zamówienia, użytkownik dostaje możliwość pobrania pdfa ze szczegółami np data, kto, gdzie, jaki samochód, id zamówienia <br>
+    2.przyjmowanie plików od użytkownika - można zrobić to tak, że np admin przy dodawaniu samochodów może załadować zdjęcie. trzeba pamiętać o zabezpieczeniach <br>
+    3.powiadomienia mailowe <br>
+    4.konfiguracja serwera apache <br>
+        a) - routing <br>
+        b) - https<br>
+        c) - zabezpieczenie folderów statycznych <br>
 
 
 

@@ -26,7 +26,12 @@ Jakub Mik
 > - Strona od administratora (samochodów, i wynajmu, możliwość dodawania i edytowania samochodów oraz nadawanie praw admina)
 > - mailer
 > - dopracować edit_user.php (rozdzielić na skrypt i stronę)
-
+Wojtek
+> - Logowanie i rejestracja<br>
+    1.Użytkownik po rejestracji zostaje automatycznie zalogowany <br>
+    2.zabezpieczenie formularzy logowania i rejestracji (sprawdzenie czy wyagane pola nie są puste po stronie php, wprowadzenie regexów do hasła, czyszczenie tych stringów, żeby nie było zbędnych spacji itp[ jak na zajęciach z php w poprzednim semestrze]) <br>
+    3.mailowe potwierdzenie rejestracji <br>
+    4.formularz przypomnienia hasła, z mailem <br>
 ## Rzeczy do zrobienia
 > - dodać role w tabeli użytkownika
 > - Wyskakujące powiadomienia przy wprowadzeniu nieporawnych danych (email, hasło, imie i nazwisko), do wykorzystania są funkcje z pliku reg.php. <br> 
@@ -40,14 +45,6 @@ Jakub Mik
     3.stronka też musi być widocznie inna dla niezalogowanych i zalogowanych <br>
     4.każda strona musi być odpowiednio zabezpieczona, jeśli użytkownik nie ma uprawnień to nie wchodzi <br>
     5.zalogowany użytkownik będzie miał możliwość zmiany hasła, czyli trzeba będzie stworzyć kolejną stronę, w stylu ustawienia konta czy coś <br>
-
-
-
-> - Logowanie i rejestracja<br>
-    1.Użytkownik po rejestracji zostaje automatycznie zalogowany <br>
-    2.zabezpieczenie formularzy logowania i rejestracji (sprawdzenie czy wyagane pola nie są puste po stronie php, wprowadzenie regexów do hasła, czyszczenie tych stringów, żeby nie było zbędnych spacji itp[ jak na zajęciach z php w poprzednim semestrze]) <br>
-    3.mailowe potwierdzenie rejestracji <br>
-    4.formularz przypomnienia hasła, z mailem <br>
 
 
 > - dodatkowe rzeczy<br>

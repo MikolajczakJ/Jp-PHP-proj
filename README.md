@@ -22,11 +22,11 @@ Projekt na Języki programowania - PHP
 > - konfiguracja serwera Apache
 <br><br>
 ## Kto co robi
-Jakub Mik
+### Jakub Mik
 > - Strona od administratora (samochodów, i wynajmu, możliwość dodawania i edytowania samochodów oraz nadawanie praw admina)
 > - mailer
 > - dopracować edit_user.php (rozdzielić na skrypt i stronę)
-Wojtek
+### Wojtek
 > - Logowanie i rejestracja<br>
     1.Użytkownik po rejestracji zostaje automatycznie zalogowany <br>
     2.zabezpieczenie formularzy logowania i rejestracji (sprawdzenie czy wyagane pola nie są puste po stronie php, wprowadzenie regexów do hasła, czyszczenie tych stringów, żeby nie było zbędnych spacji itp[ jak na zajęciach z php w poprzednim semestrze]) <br>

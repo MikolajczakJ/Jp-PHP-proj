@@ -23,8 +23,9 @@ Projekt na Języki programowania - PHP
 <br><br>
 ## Kto co robi
 Jakub Mik
-> - Strona od administratora (lista użytkowników, samochodów, i wynajmu, możliwość dodawania i edytowania samochodów oraz nadawanie praw admina)
+> - Strona od administratora (samochodów, i wynajmu, możliwość dodawania i edytowania samochodów oraz nadawanie praw admina)
 > - mailer
+> - dopracować edit_user.php (rozdzielić na skrypt i stronę)
 
 ## Rzeczy do zrobienia
 > - dodać role w tabeli użytkownika

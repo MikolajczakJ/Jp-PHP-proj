@@ -43,9 +43,9 @@ class User{
 
     }
     // aktualizacja użytkownika znajdującego się pod określonym id 
-    static function updateUser($userId, $newUser){
-        $stmt = $conn->prepare("UPDATE users SET name = ?, surname = ?, password = ?  WHERE users.id = ?;" );
-        $stmt ->bind_param('sssi',$newUser->name,$newUser->surName,$newUser->password,$userId);
+    static function updateUser($userId, $newUser, $conn){
+        $stmt = $conn->prepare("UPDATE users SET name = ?, surname = ?, password = ?  WHERE users.id_user = ?;" );
+        $stmt ->bind_param('sssi',$newUser->name,$newUser->surname,$newUser->password,$userId);
         $stmt->execute();
         $stmt->close();
 

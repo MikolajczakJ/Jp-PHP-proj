@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Update user details in the database
     // Use prepared statements for security in a production environment
-$editUser = new User($newFirstName,$newLastName,$user["email"],$user["password"]);
+$editUser = new User($userID,$newFirstName,$newLastName,$user["email"],$user["password"]);
     User::updateUser($userID,$editUser,$conn);
 }
 

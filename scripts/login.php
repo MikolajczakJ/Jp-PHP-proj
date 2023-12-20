@@ -7,7 +7,7 @@ if($user == null) {
 $_SESSION["error"] = "Błędny login lub hasło";
 }else{
     // tutaj przypisanie danych użytkownika do sesji
-    echo "Śmiga";
+    User::logInUser($user);
 }
 
 ?>

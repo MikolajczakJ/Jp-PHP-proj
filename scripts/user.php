@@ -5,7 +5,8 @@ class User{
     public $surname;
     public $email;
     public $password;
-    function __construct($name, $surName, $email, $password){
+    function __construct($id,$name, $surName, $email, $password){
+        $this->id = $id;
         $this->name = $name;
         $this->surname = $surName;
         $this->email = $email;
@@ -24,7 +25,7 @@ class User{
         $stmt->close();
         $row = $result->fetch_assoc();
         if(password_verify($password,$row['password'])){
-            return $row;
+            return new User($row["id_user"],$row["name"],$row["surname"],$row["email"],$row["password"]); 
         }
         else{
             return null;    
@@ -49,6 +50,18 @@ class User{
         $stmt->execute();
         $stmt->close();
 
+    }
+    static function logInUser($user){
+        $_SESSION["auth_user"] = array(
+            'id'       => $user->id,
+            'name'     => $user->name,
+            'surname'  => $user->surname,
+            'email'    => $user->email,
+        );
+        print_r($_SESSION["auth_user"]);
+    }
+    static function logOut(){
+        unset($_SESSION["auth_user"]);
     }
 
         

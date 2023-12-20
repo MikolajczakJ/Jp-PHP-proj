@@ -28,7 +28,6 @@ Projekt na Języki programowania - PHP
 > - dopracować edit_user.php (rozdzielić na skrypt i stronę)
 ### Wojtek
 > - Logowanie i rejestracja<br>
-    1.Użytkownik po rejestracji zostaje automatycznie zalogowany <br>
     2.zabezpieczenie formularzy logowania i rejestracji (sprawdzenie czy wyagane pola nie są puste po stronie php, wprowadzenie regexów do hasła, czyszczenie tych stringów, żeby nie było zbędnych spacji itp[ jak na zajęciach z php w poprzednim semestrze]) <br>
     3.mailowe potwierdzenie rejestracji <br>
     4.formularz przypomnienia hasła, z mailem <br>
@@ -60,3 +59,7 @@ Projekt na Języki programowania - PHP
 
 Trzeba pamiętać, że projekt ma być zamieszczony na gitlabie i, że mamy korzystać z dockera
 ## Temat projektu **Wypożyczalnia samochodów**
+
+
+Zrobione
+    1.Użytkownik po rejestracji zostaje automatycznie zalogowany <br>

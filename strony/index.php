@@ -15,14 +15,14 @@
 <body>
     <section class="header">
         <nav>
-            <a href="index.html"><img src="../images/carlogo.png" alt=""></a>
+            <a href="index.php"><img src="../images/carlogo.png" alt=""></a>
             <div class="nav-links" id="navlinks">              
                     <i class='bx bx-x' onclick="hideMenu()"></i>    
                     <ul>
-                        <li><a href="#">Strona Główna</a></li>
-                        <li><a href="#">Oferta</a></li>
+                        <li><a href="index.php">Strona Główna</a></li>
+                        <li><a href="offers.php">Oferta</a></li>
                         <li><a href="#">Regulamin</a></li>
-                        <li><a href="#">Zaloguj się</a></li>
+                        <li><a href="logandreg.php">Zaloguj się</a></li>
                         
                     </ul>
             </div>

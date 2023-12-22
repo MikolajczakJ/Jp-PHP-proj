@@ -1,8 +1,3 @@
-<?php
-    require_once '../scripts/connect.php';
-    $sql = "SELECT * FROM cars";
-    $all_products = $conn->query($sql); 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,28 +28,61 @@
             </div>
             <i class='bx bx-menu' onclick="showMenu()"></i>
         </nav>
-        <hr>
-        <div class="content">           
-            <h1>Samochody w naszej ofercie </h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus officiis maxime maiores cum excepturi nam! Perspiciatis, tenetur voluptatem? Excepturi magnam incidunt sequi laborum voluptate explicabo quia rem voluptates at asperiores!</p>          
-            <div class="row">
-                <?php
-                    while($row = mysqli_fetch_assoc($all_products)){
-                ?>   
-                <div class="card-body">
-                    <div class="image">
-                        <img src="<?php echo $row["img"];?>" alt="">
-                    </div>
-                    <hr>
-                    <p class="brand"><?php echo $row["brand"];?></p>
-                    <p class="Model"><?php echo $row["model"];?></p>
-                    <a href="" class="text-btn">Zaloguj się i sprawdź naszą oferte</a>                    
-                </div> 
-                <?php 
-                    }
-                ?> 
-            </div>
-        </div> 
+        <hr>        
+        <?php
+            // Połączenie z bazą danych
+            require_once('../scripts/connect.php');
+
+            // Parametry paginacji
+            $results_per_page = 9; // liczba wyników na stronę
+
+            // Pobranie numeru bieżącej strony
+            if (!isset($_GET['page'])) {
+                $page = 1;
+            } else {
+                $page = $_GET['page'];
+            }
+
+            // Obliczenie offsetu dla zapytania SQL
+            $offset = ($page - 1) * $results_per_page;
+
+            // Zapytanie SQL z uwzględnieniem LIMIT i OFFSET
+            $sql = "SELECT * FROM cars LIMIT $offset, $results_per_page";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                echo "<div class='car-container'>";
+                while ($row = $result->fetch_assoc()) {
+                    echo "<div class='car'>";
+                    echo "<a href='strona_samochodu.php?id=" . $row["id_car"] . "'>";
+                    echo "<img src='" . $row["img"] . "' alt='Car Image'>";
+                    echo "<div class='overlay'>";
+                    echo $row["brand"] . " " . $row["model"]; // Opis marki i modelu na przezroczystym tle
+                    echo "</div>";
+                    echo "</a>";
+                    echo "</div>";
+                }
+                echo "</div>";
+            } else {
+                echo "Brak dostępnych samochodów";
+            }
+
+            // Pobranie liczby wszystkich samochodów
+            $sql_count = "SELECT COUNT(*) AS total FROM cars";
+            $count_result = $conn->query($sql_count);
+            $row_count = $count_result->fetch_assoc();
+            $total_results = $row_count['total'];
+
+            // Obliczenie liczby stron
+            $total_pages = ceil($total_results / $results_per_page);
+
+            // Wyświetlenie linków do kolejnych stron
+            for ($i = 1; $i <= $total_pages; $i++) {
+                echo "<a href='?page=$i'>$i</a> ";
+            }
+
+            $conn->close();
+            ?>
     </section>
 <!--JS--ToggleMenu--->
 <script>

@@ -15,7 +15,7 @@
 <body>
     <section class="header">
         <nav>
-            <a href="index.php"><img src="../images/carlogo.png" alt=""></a>
+            <a href="index.php"><img src="../images/carlogo.png" alt="" height="150px"></a>
             <div class="nav-links" id="navlinks">              
                     <i class='bx bx-x' onclick="hideMenu()"></i>    
                     <ul>

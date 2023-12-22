@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Lista Samochodów</title>
-    <link rel="stylesheet" href="../css/lista_samochodow.css"> <!-- Odwołanie do pliku CSS -->
+    <link rel="stylesheet" href="../CSS/lista_samochodow.css"> <!-- Odwołanie do pliku CSS -->
 </head>
 <body>
 <nav class ="navbar">

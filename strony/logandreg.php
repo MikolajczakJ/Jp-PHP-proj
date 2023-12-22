@@ -106,6 +106,5 @@
 
     </div>
   </div>
-<?php         header("location: ../scripts/mailer.php");?>
 </body>
 </html>

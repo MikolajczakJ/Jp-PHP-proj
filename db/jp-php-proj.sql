@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2023 at 01:51 PM
+-- Generation Time: Dec 22, 2023 at 10:06 AM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -72,7 +72,7 @@ CREATE TABLE `rent` (
 --
 
 CREATE TABLE `role` (
-  `id` int(2) NOT NULL,
+  `id` tinyint(2) NOT NULL,
   `role` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -95,18 +95,21 @@ CREATE TABLE `users` (
   `name` varchar(60) NOT NULL,
   `surname` varchar(60) NOT NULL,
   `email` varchar(60) NOT NULL,
-  `password` varchar(150) NOT NULL
+  `role_id` tinyint(4) NOT NULL DEFAULT 1,
+  `password` varchar(150) NOT NULL,
+  `ver_code` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `name`, `surname`, `email`, `password`) VALUES
-(1, 'aaa', 'bbb', 'jak@gm.com', '$argon2id$v=19$m=65536,t=4,p=1$VjZldE9RRnEyT2RtMnFCTQ$jmMcNR'),
-(2, 'jak', 'mik', 'test@gm.csa', '$argon2id$v=19$m=65536,t=4,p=1$eGFJcTBIazhVbWx4V2hiTQ$IzLp7Z'),
-(3, 'jak', 'mik', 'test@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$TW9wM3h6a0ZnMWljSTI3ZQ$S43YGL'),
-(4, 'a', 'a', 'a@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$NVgycW12dno1VDNFRFJHUQ$B3sV/JGztGmddNDsVdY6XHs0j3x/39WCaavjhaNQ+5Q');
+INSERT INTO `users` (`id_user`, `name`, `surname`, `email`, `role_id`, `password`, `ver_code`) VALUES
+(9, 'Jakub', 'Mikołajczak', 'jak@gm.com', 1, '$argon2id$v=19$m=65536,t=4,p=1$MURTNXIuWjN0d1pvenkvQg$09UYIh3ptizTIg9ib943RnzLfnmbjhh3wTz3P3OyiL0', ''),
+(10, 'Jakub', 'Mikołajczak', 'jak@gm.com', 1, '$argon2id$v=19$m=65536,t=4,p=1$c1hDMVdXUnZQY3VpdndESA$SySsfsacHwyq+JskcTRn/GLTkd0hg/G4hnDmFQYX+TA', ''),
+(11, 'Jakub', 'Mikołajczak', 'jak@gm.com', 1, '$argon2id$v=19$m=65536,t=4,p=1$MlE0RlRxVkFQUEhnT1lRZg$k1acXAHzJwGkBMoHXTWrd90XAKH2+DmWQ8Yo/7xE/8c', ''),
+(12, 'Jakub', 'Mikołajczak', 'jaku@gm.com', 1, '$argon2id$v=19$m=65536,t=4,p=1$aHRoT1IuMUpST2hYTC82aw$eP6bgSaFYL10u81qkWazSvfvlivpk7NEyF1j/SFXd3I', ''),
+(13, 'adam', 'testowy', 'zzz@gmail.com', 1, '$argon2id$v=19$m=65536,t=4,p=1$dXFyTFhPM0ZMTVEydVd0dg$k9HRQPtwgsNVBGor0pbE8ens+BJ139c7YE6F5qTOoL4', '33d6cc8d1dc2272003c735cef9ce375d');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -136,7 +139,8 @@ ALTER TABLE `role`
 -- Indeksy dla tabeli `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id_user`),
+  ADD KEY `role_id` (`role_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -146,7 +150,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `id_car` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_car` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `rent`
@@ -158,13 +162,13 @@ ALTER TABLE `rent`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
@@ -176,6 +180,12 @@ ALTER TABLE `users`
 ALTER TABLE `rent`
   ADD CONSTRAINT `rent_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `cars` (`id_car`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `rent_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -8,6 +8,7 @@ $_SESSION["error"] = "Błędny login lub hasło";
 }else{
     // tutaj przypisanie danych użytkownika do sesji
     User::logInUser($user);
+    header("location: ../strony/index.php");
 }
 
 ?>

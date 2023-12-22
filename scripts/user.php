@@ -5,12 +5,16 @@ class User{
     public $surname;
     public $email;
     public $password;
-    function __construct($id,$name, $surName, $email, $password){
+    public $role;
+    public $ver_code;
+    function __construct($id,$name, $surName, $email, $password,$role,$ver_code){
         $this->id = $id;
         $this->name = $name;
         $this->surname = $surName;
         $this->email = $email;
         $this->password = $password;
+        $this->role = $role;
+        $this->ver_code = $ver_code;
     }
     // metoda haszująca hasło przy pomocy argon2id
     static function hashUserPassword($password){
@@ -25,7 +29,7 @@ class User{
         $stmt->close();
         $row = $result->fetch_assoc();
         if(password_verify($password,$row['password'])){
-            return new User($row["id_user"],$row["name"],$row["surname"],$row["email"],$row["password"]); 
+            return new User($row["id_user"],$row["name"],$row["surname"],$row["email"],$row["password"],$row["role_id"],$row["ver_code"]); 
         }
         else{
             return null;    
@@ -34,9 +38,9 @@ class User{
     // dodawanie użytkownika zwraca true jeśli użytkownik zostanie dodany, fale jeśli nie
     static function addUser($user, $conn){
         echo $user->surname;
-        $stmt= $conn->prepare("INSERT INTO `users` (`name`, `surname`, `email`, `password`) VALUES (?, ?, ?, ?);");
+        $stmt= $conn->prepare("INSERT INTO `users` (`name`, `surname`, `email`, `password`,`ver_code`) VALUES (?, ?, ?, ?,?);");
         $pass = User::hashUserPassword($user->password);
-        $stmt ->bind_param('ssss',$user->name,$user->surname,$user->email,$pass);
+        $stmt ->bind_param('sssss',$user->name,$user->surname,$user->email,$pass,$user->ver_code);
         $stmt->execute();
         $outcome =$stmt->affected_rows==1;
         $stmt->close();
@@ -53,12 +57,13 @@ class User{
     }
     static function logInUser($user){
         $_SESSION["auth_user"] = array(
+            'ver_code' => $user->ver_code,
+            'role'     => $user->role,
             'id'       => $user->id,
             'name'     => $user->name,
             'surname'  => $user->surname,
             'email'    => $user->email,
         );
-        print_r($_SESSION["auth_user"]);
     }
     static function logOut(){
         unset($_SESSION["auth_user"]);

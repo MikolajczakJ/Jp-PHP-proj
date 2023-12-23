@@ -14,20 +14,7 @@
 </head>
 <body>
     <section class="header">
-        <nav>
-            <a href="index.php"><img src="../images/carlogo.png" alt="" height="150px"></a>
-            <div class="nav-links" id="navlinks">              
-                    <i class='bx bx-x' onclick="hideMenu()"></i>    
-                    <ul>
-                        <li><a href="index.php">Strona Główna</a></li>
-                        <li><a href="offers.php">Oferta</a></li>
-                        <li><a href="#">Regulamin</a></li>
-                        <li><a href="logandreg.php">Zaloguj się</a></li>
-                        
-                    </ul>
-            </div>
-            <i class='bx bx-menu' onclick="showMenu()"></i>
-        </nav>
+    <?php require_once "../components/navbar.php"; ?>
         <hr>
         <div class="textbox">
             <h1>RentIt</h1>
@@ -106,15 +93,6 @@
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae laborum ratione veritatis, facere et id dignissimos nesciunt illum doloribus magni odio nam eius aspernatur exercitationem fuga qui nostrum ad architecto?</p>
         </div>
     </section>
-<!--JS--ToggleMenu--->
-<script>
-    var navLinks= document.getElementById("navlinks");
-    function showMenu(){
-        navLinks.style.right="0";
-     }
-    function hideMenu(){
-        navlinks.style.right="-1000px";
-    }
-</script>
+
 </body>
 </html>

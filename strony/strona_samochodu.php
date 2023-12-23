@@ -1,34 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+    <title>Szczegóły Samochodu</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zamów samochód</title>
+    <link rel="stylesheet" href="../CSS/offers.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+<?php require_once "../components/navbar.php"; ?>
+<div class="car-details">
+    <?php
+    require_once('../scripts/connect.php');
 
-<?php
-if (isset($_GET['car_id'])) {
-    $carId = $_GET['car_id'];
-require_once "../scripts/connect.php";
-// JESZCZE TRZEBA BĘDZIE TU WYŚWIETLIĆ DANE SAMOCHODU
-    echo "<h1>Order Car #$carId</h1>";
-}
+    if (isset($_GET['id'])) {
+        $car_id = $_GET['id'];
+        
+        // Pobranie szczegółów samochodu z bazy danych
+        $sql_car = "SELECT * FROM cars WHERE id_car = $car_id";
+        $result_car = $conn->query($sql_car);
+
+        if ($result_car->num_rows > 0) {
+            $row_car = $result_car->fetch_assoc();
+
+            // Wyświetlenie informacji o samochodzie
+            echo "<div class='car-info'>";
+            echo "<img src='" . $row_car['img'] . "' alt='Car Image'>";
+            echo "<h2>" . $row_car['brand'] . " " . $row_car['model'] . "</h2>";
+            echo "<p>" . $row_car['description'] . "</p>";
+            echo "</div>";
+
+            // Formularz rezerwacji
+            echo "<div class='reservation-form'>";
+            echo "<h3>Zarezerwuj</h3>";
+            echo "<form method='post'>";
+            echo "<label>Data rozpoczęcia:</label>";
+            echo "<input type='date' name='start_date' required><br>";
+            echo "<label>Data zakończenia:</label>";
+            echo "<input type='date' name='end_date' required><br>";
+            echo "<input type='submit' name='reserve_submit' value='Zarezerwuj'>";
+            echo "</form>";
+
+            // Obsługa rezerwacji
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reserve_submit'])) {
+                $start_date = $_POST['start_date'];
+                $end_date = $_POST['end_date'];
+
+                if ($start_date > $end_date) {
+                    echo "<p>Data zakończenia rezerwacji nie może być wcześniejsza niż data rozpoczęcia.</p>";
+                } else if ($start_date < date('Y-m-d')) {
+                    echo "<p>Nie można cofać się w czasie - wybierz datę późniejszą niż dzisiaj.</p>";
+                } else {
+                    // Sprawdzenie dostępności terminu
+                    $check_availability = "SELECT * FROM rent WHERE car_id = $car_id AND ((date_start <= '$start_date' AND date_end >= '$start_date') OR (date_start <= '$end_date' AND date_end >= '$end_date'))";
+                    $result_availability = $conn->query($check_availability);
+
+                    $duplicate_found = false;
+                    if ($result_availability->num_rows > 0) {
+                        while ($row = $result_availability->fetch_assoc()) {
+                            // Sprawdź, czy znaleziony termin dotyczy tego samego samochodu
+                            if ($row['car_id'] == $car_id && ($row['date_start'] == $start_date || $row['date_end'] == $end_date)) {
+                                $duplicate_found = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if ($duplicate_found) {
+                        echo "<p>Ten termin jest już zarezerwowany.</p>";
+                    } else {
+                        // Dodanie rezerwacji do bazy danych
+                        $insert_reservation = "INSERT INTO rent (date_start, date_end, user_id, car_id) VALUES ('$start_date', '$end_date', 1, $car_id)";
+                        if ($conn->query($insert_reservation) === TRUE) {
+                            echo "<p>Rezerwacja zakończona pomyślnie!</p>";
+                        } else {
+                            echo "Błąd podczas rezerwacji: " . $conn->error;
+                        }
+                    }
+                }
+            }
+            echo "</div>";
+        } else {
+            echo "Nie znaleziono samochodu.";
+        }
+    } else {
+        echo "Brak wybranego samochodu.";
+    }
+
+    $conn->close();
     ?>
-    <form action="process_order.php" method="post">
-        <input type="hidden" name="car_id" value="<?php echo $carId; ?>">
+</div>
 
-        <!-- Date input for start of rental period -->
-        <label for="start_date">Od:</label>
-        <input type="date" id="start_date" name="start_date" required>
-        <br>
-
-        <!-- Date input for finish of rental period -->
-        <label for="finish_date">Do:</label>
-        <input type="date" id="finish_date" name="finish_date" required>
-        <br>
-
-        <!-- Additional form fields can be added for user details, payment, etc. -->
-        <input type="submit" value="Place Order">
-    </form>
-
+</body>
+</html>

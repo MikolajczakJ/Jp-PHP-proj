@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2023 at 10:06 AM
+-- Generation Time: Dec 24, 2023 at 11:41 AM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -65,6 +65,14 @@ CREATE TABLE `rent` (
   `car_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `rent`
+--
+
+INSERT INTO `rent` (`id_rent`, `date_start`, `date_end`, `user_id`, `car_id`) VALUES
+(3, '2023-12-27 00:00:00', '2023-12-30 00:00:00', 14, 3),
+(4, '2024-01-01 00:00:00', '2024-01-03 00:00:00', 14, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -105,11 +113,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `name`, `surname`, `email`, `role_id`, `password`, `ver_code`) VALUES
-(9, 'Jakub', 'Mikołajczak', 'jak@gm.com', 1, '$argon2id$v=19$m=65536,t=4,p=1$MURTNXIuWjN0d1pvenkvQg$09UYIh3ptizTIg9ib943RnzLfnmbjhh3wTz3P3OyiL0', ''),
-(10, 'Jakub', 'Mikołajczak', 'jak@gm.com', 1, '$argon2id$v=19$m=65536,t=4,p=1$c1hDMVdXUnZQY3VpdndESA$SySsfsacHwyq+JskcTRn/GLTkd0hg/G4hnDmFQYX+TA', ''),
-(11, 'Jakub', 'Mikołajczak', 'jak@gm.com', 1, '$argon2id$v=19$m=65536,t=4,p=1$MlE0RlRxVkFQUEhnT1lRZg$k1acXAHzJwGkBMoHXTWrd90XAKH2+DmWQ8Yo/7xE/8c', ''),
-(12, 'Jakub', 'Mikołajczak', 'jaku@gm.com', 1, '$argon2id$v=19$m=65536,t=4,p=1$aHRoT1IuMUpST2hYTC82aw$eP6bgSaFYL10u81qkWazSvfvlivpk7NEyF1j/SFXd3I', ''),
-(13, 'adam', 'testowy', 'zzz@gmail.com', 1, '$argon2id$v=19$m=65536,t=4,p=1$dXFyTFhPM0ZMTVEydVd0dg$k9HRQPtwgsNVBGor0pbE8ens+BJ139c7YE6F5qTOoL4', '33d6cc8d1dc2272003c735cef9ce375d');
+(14, 'Admin', 'admin', 'admin@gmail.com', 2, '$argon2id$v=19$m=65536,t=4,p=1$Vms4bUVZWnpndU5USk9RYQ$XIhXGLr9J3ZWAQ0OJap96gQ6v06Wi9vlwMJJsMhm2UA', '219bc3dcd56dc3b44910d263609e304e');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -126,8 +130,8 @@ ALTER TABLE `cars`
 --
 ALTER TABLE `rent`
   ADD PRIMARY KEY (`id_rent`),
-  ADD UNIQUE KEY `cars` (`car_id`),
-  ADD KEY `users` (`user_id`);
+  ADD KEY `users` (`user_id`),
+  ADD KEY `cars` (`car_id`) USING BTREE;
 
 --
 -- Indeksy dla tabeli `role`
@@ -156,7 +160,7 @@ ALTER TABLE `cars`
 -- AUTO_INCREMENT for table `rent`
 --
 ALTER TABLE `rent`
-  MODIFY `id_rent` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_rent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -168,7 +172,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables

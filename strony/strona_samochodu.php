@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,13 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-<?php require_once "../components/navbar.php"; ?>
+<?php require_once "../components/navbar.php"; 
+if(!isset($_SESSION["auth_user"])){
+echo "<p> Aby zarerezwować samochód najpierw musisz się zalogować </p>" ;
+}
+else{
+?>
+
 <div class="car-details">
     <?php
     require_once('../scripts/connect.php');
@@ -74,13 +81,17 @@
                     if ($duplicate_found) {
                         echo "<p>Ten termin jest już zarezerwowany.</p>";
                     } else {
+                        $stmt = $conn->prepare("INSERT INTO rent (date_start, date_end, user_id, car_id) VALUES (?,?,?,?);" );
+                        $stmt ->bind_param('ssii',$start_date,$end_date,$_SESSION["auth_user"]["id"],$car_id);
                         // Dodanie rezerwacji do bazy danych
-                        $insert_reservation = "INSERT INTO rent (date_start, date_end, user_id, car_id) VALUES ('$start_date', '$end_date', 1, $car_id)";
-                        if ($conn->query($insert_reservation) === TRUE) {
-                            echo "<p>Rezerwacja zakończona pomyślnie!</p>";
-                        } else {
-                            echo "Błąd podczas rezerwacji: " . $conn->error;
-                        }
+                        // $insert_reservation = "INSERT INTO rent (date_start, date_end, user_id, car_id) VALUES ('$start_date', '$end_date', $_SESSION[auth_user][id], $car_id)";
+                        if($stmt->execute()){
+                            // if ($conn->query($insert_reservation)) {
+                                echo "<p>Rezerwacja zakończona pomyślnie!</p>";
+                            } else {
+                                echo "Błąd podczas rezerwacji: " . $conn->error;
+                            }
+                            $stmt->close();
                     }
                 }
             }
@@ -95,6 +106,6 @@
     $conn->close();
     ?>
 </div>
-
+<?php } ?>
 </body>
 </html>

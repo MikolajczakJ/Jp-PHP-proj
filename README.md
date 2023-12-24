@@ -32,7 +32,9 @@ Projekt na Języki programowania - PHP
     3.mailowe potwierdzenie rejestracji <br>
     4.formularz przypomnienia hasła, z mailem <br>
 ## Rzeczy do zrobienia
-> - dodać kod do weryfikacji konta i  role w tabeli użytkownika
+
+> - dopracować strona_samochodu, rzdzielić na część skryptu i na strone (opcjonalne) 
+> - dodać kod do weryfikacji konta
 > - Wyskakujące powiadomienia przy wprowadzeniu nieporawnych danych (email, hasło, imie i nazwisko), do wykorzystania są funkcje z pliku reg.php. <br> 
     1.Wstęnie robimy powiadomienia w stylu nie udało się zalogować, jeśli będziemy mieli czas zaminimy na szczegóły, np pusty email, hasła się nie zgadzają, hasło nie spełnia wymagań itp <br>
     2.powiadomienie o wylogowaniu użytkownika <br>

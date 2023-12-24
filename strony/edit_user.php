@@ -1,4 +1,13 @@
 <?php
+session_start();
+if(!isset($_SESSION["auth_user"])){
+    header("location: ./index.php");
+}
+else{
+    if($_SESSION["auth_user"]["role"]!= 2){
+        header("location: ./index.php");
+    }
+}
 if (!isset($_GET['id'])) {
     echo 'User ID is missing.';
     exit();

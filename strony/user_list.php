@@ -1,3 +1,15 @@
+<?php session_start(); 
+if(!isset($_SESSION["auth_user"])){
+    header("location: ./index.php");
+}
+else{
+    if($_SESSION["auth_user"]["role"] !=2){
+        header("location: ./index.php");
+    }
+    else{
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +39,6 @@
         <?php include '../scripts/user_list.php'; ?>
 
     </div>
-
+<?php }} ?>
 </body>
 </html>

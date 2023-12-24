@@ -1,3 +1,8 @@
+<?php 
+session_start();
+if(isset($_SESSION["auth_user"]) && session_status()==2){
+  header("location: ./index.php");
+}?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

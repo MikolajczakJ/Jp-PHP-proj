@@ -35,7 +35,49 @@ class User{
             return null;    
         }
     }
-
+    static function confirmAccount($mail,$user)
+    {
+        //tutaj jeszcze muszę zmienić wartość w tableli użytkownicy na verified ( trzeba też to pole dodać)
+        $mail->addAddress("$user->email", "$user->name". " $user->surname");     //Add a recipient
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = 'Potwierdź swoje konto';
+        $mail->Body    = 'Witaj,'. $user->name.' potwierdź swoje konto <a href = "localhost/JPPHPPROJ/Jp-PHP-proj/strony/verify.php?ver_code='.$user->ver_code.'"> tutaj </a>';
+        $mail->AltBody = 'Wejdź na localhost/JPPHPPROJ/Jp-PHP-proj/strony/verify.php?ver_code='.$user->ver_code.' aby potwierdzić swoje konto';
+        $mail->send();
+        header("location: ../strony/index.php");
+    }
+    static function resetPassword($mail, $user_mail,$nowe_haslo,$conn)
+    {
+        $mail->addAddress("$user_mail", "$user_mail"); 
+        $mail->isHTML(true);                      
+        $user = User::findUserByMail($user_mail,$conn);
+        $hash_new_pass = User::hashUserPassword($nowe_haslo);
+        User::replacePassword($user,$hash_new_pass,$conn);
+        $mail->Subject = 'Nowe hasło';
+        $mail->Body    = "Witaj, wybrałeś opcję wygenerowania nowego hasła, oto ono: $nowe_haslo";
+        $mail->AltBody    = "Witaj, wybrałeś opcję wygenerowania nowego hasła, oto ono: $nowe_haslo";
+        $mail->send();
+        header("location: ../strony/logandreg.php");
+    }
+    static function generateSafePassword() {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_-+=<>?';
+        $characters_length = strlen($characters);
+        $password = '';
+    
+        for ($i = 0; $i < 16; $i++) {
+            $password .= $characters[random_int(0, $characters_length - 1)];
+        }
+        return $password;
+    }
+    static function findUserByMail($email, $conn){
+        $stmt= $conn->prepare("SELECT * FROM users where email=?");
+        $stmt ->bind_param('s',$email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $row = $result->fetch_assoc();
+        return new User($row["id_user"],$row["name"],$row["surname"],$row["email"],$row["password"],$row["role_id"],$row["ver_code"]); 
+    }
     static function findUserById($id,$conn){
         $stmt= $conn->prepare("SELECT * FROM users where id_user=?");
         $stmt ->bind_param('s',$id);
@@ -61,6 +103,13 @@ class User{
     static function updateUser($userId, $newUser, $conn){
         $stmt = $conn->prepare("UPDATE users SET name = ?, surname = ?, role_id = ?  WHERE users.id_user = ?;" );
         $stmt ->bind_param('ssii',$newUser->name,$newUser->surname,$newUser->role,$userId);
+        $stmt->execute();
+        $stmt->close();
+
+    }
+    static function replacePassword($user, $newPassword, $conn){
+        $stmt = $conn->prepare("UPDATE users SET password = ? WHERE users.email = ?;" );
+        $stmt ->bind_param('ss',$newPassword,$user->email);
         $stmt->execute();
         $stmt->close();
 

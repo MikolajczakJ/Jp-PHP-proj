@@ -22,8 +22,10 @@ Projekt na Języki programowania - PHP
 > - konfiguracja serwera Apache
 <br><br>
 ## Kto co robi
+
 ### Jakub Mik
-> - Strona od administratora (samochodów, i wynajmu, możliwość dodawania i edytowania samochodów oraz nadawanie praw admina)
+
+> - Strona od administratora (możliwość edytowania samochodów)
 > - mailer
 > - dopracować edit_user.php (rozdzielić na skrypt i stronę)
 ### Wojtek

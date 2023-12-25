@@ -75,14 +75,14 @@ if(isset($_SESSION["auth_user"]) && session_status()==2){
 
   <div class="container">
     <div class="form-container">
-      <h2 class ="fon" >Login</h2>
+      <h2 class ="fon" >Logowanie</h2>
       <form action="../scripts/login.php" method="post">
         <label class ="fon" for="login-email">Email:</label>
         <input type="text" id="login-email" name="login-email" required>
 
         <label class ="fon" for="login-password">Hasło:</label>
         <input type="password" id="login-password" name="login-password" required>
-
+        <p class ="fon"> Nie pamiętasz hasła? <a href="reset_password.php"> Reset hasła </a> </p>
         <button type="submit">Logowanie </button>
       </form>
 
@@ -91,7 +91,7 @@ if(isset($_SESSION["auth_user"]) && session_status()==2){
 
   <div class="container" style="margin-left: 20px;">
     <div class="form-container">
-      <h2 class ="fon">Register</h2>
+      <h2 class ="fon">Rejestracja</h2>
       <form action="../scripts/register.php" method="post">
         <label class ="fon" for="register-firstname">Imię:</label>
         <input type="text" id="register-firstname" name="register-firstname" required>

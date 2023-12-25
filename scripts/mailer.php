@@ -26,19 +26,19 @@ try {
     //Recipients
     $mail->setFrom('testycovid7@gmail.com', 'Testy covid');
     // $mail->addAddress("jakubmikolajczak1ti@gmail.com","test");     //Add a recipient
-    $mail->addAddress("$_SESSION[auth_user][email]", "$_SESSION[auth_user][name]");     //Add a recipient
+    // $mail->addAddress("$_SESSION[auth_user][email]", "$_SESSION[auth_user][name]");     //Add a recipient
 
-    //Content
-    $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Potwierdź swoje konto';
-    $mail->Body    = 'Witaj,'. $_SESSION["auth_user"]["name"].' potwierdź swoje konto <a href = "localhost/JPPHPPROJ/Jp-PHP-proj/strony/verify.php?ver_code='.$_SESSION["auth_user"]["name"].'"> tutaj </a>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-    unset($_SESSION["imie"]);
-    unset($_SESSION["email"]);
-    unset($_SESSION["nazwisko"]);
-    $mail->send();
-    echo 'Message has been sent';
-    header("location: ../strony/index.php");
+    // //Content
+    // $mail->isHTML(true);                                  //Set email format to HTML
+    // $mail->Subject = 'Potwierdź swoje konto';
+    // $mail->Body    = 'Witaj,'. $_SESSION["auth_user"]["name"].' potwierdź swoje konto <a href = "localhost/JPPHPPROJ/Jp-PHP-proj/strony/verify.php?ver_code='.$_SESSION["auth_user"]["name"].'"> tutaj </a>';
+    // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    // unset($_SESSION["imie"]);
+    // unset($_SESSION["email"]);
+    // unset($_SESSION["nazwisko"]);
+    // $mail->send();
+    // echo 'Message has been sent';
+    // header("location: ../strony/index.php");
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }

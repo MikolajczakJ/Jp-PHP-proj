@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Sracz</title>
+    <title>RentIt</title>
 </head>
 <body>
     <section class="header">
@@ -22,7 +22,10 @@
             <h1>RentIt</h1>
             <h4>U nas spełnisz swoje najskrytsze motoryzacyjne marzenia w najlepeszych cenach.</p>
             <p>Nasze samochody premium czekają na ciebie.</p>            
-            <a href="" class="text-btn">Zaloguj się i sprawdź naszą oferte</a>   
+            <?php  if(!isset($_SESSION["auth_user"])){
+                echo '<a href="./logandreg.php" class="text-btn">Zaloguj się i sprawdź naszą oferte</a>   ';
+            }
+            ?>
         </div>    
     </section>
     <!-- Section offer-->

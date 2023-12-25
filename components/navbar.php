@@ -8,6 +8,7 @@
                             echo '<li> <a href="index.php"> Strona główna </a> </li>';
                             echo '<li> <a href="offers.php"> Lista samochodów </a> </li>';
                             echo '<li> <a href="user_list.php"> Lista użytkowników </a> </li>';
+                            echo '<li> <a href="add_samochod.php"> Dodaj samochód do oferty </a> </li>';
                         }
                         else{
                         ?>

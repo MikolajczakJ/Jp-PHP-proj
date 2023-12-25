@@ -25,8 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $newLastName = $_POST['surname'];
     $role = $_POST['role'] == "admin" ? 2 : 1;
 
-    // Update user details in the database
-    // Use prepared statements for security in a production environment
 $editUser = new User($userID,$newFirstName,$newLastName,$user->email,$user->password,$role,$user->ver_code);
     User::updateUser($userID,$editUser,$conn);
 }

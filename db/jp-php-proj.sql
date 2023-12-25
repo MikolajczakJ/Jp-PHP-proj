@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2023 at 11:41 AM
+-- Generation Time: Dec 25, 2023 at 01:46 PM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -49,7 +49,10 @@ INSERT INTO `cars` (`id_car`, `brand`, `model`, `description`, `img`) VALUES
 (9, 'BMW', 'X6 M Competition', 'Rodzaj paliwa Benzin\r\nPojemność skokowa 4.395 cm3\r\nPrzyspieszenie 3,8 s\r\nEmisja CO2 304 g/km\r\nZbiornik paliwa 83 l\r\nMoc znamionowa 625 hp (460 kW)\r\nPrędkość maksymalna 290 km/h\r\nLiczba miejsc 5\r\nCykl mieszany 13,4 l/100 km', 'https://i.pinimg.com/564x/22/bd/79/22bd79ccb7a9688c868dd66680c63a9b.jpg'),
 (10, 'Mercedes', 'AMG GLE Coupé 63', 'GLE 63 S 4Matic+ Coupe (4.0 V8; 612+22 KM, 850 Nm) z 9-biegową przekładnią automatyczną AMG SPEEDSHIFT TCT 9G i napędem na wszystkie koła, przyspieszenie 0-100 km/h: 3,8 s, prędkość maksymalna: 280 km/h, średnie zużycie paliwa: 12,2-12,5 l/100 km', 'https://i.pinimg.com/564x/bf/5a/ca/bf5aca2ba328e837ee7f8823b8a52192.jpg'),
 (11, 'Audi', 'e-tron GT', 'Moc 350 kW\r\nPrzyspieszenie (0–100 km/h) 4,1 sek.\r\nZasięg (WLTP) do 501 km', 'https://i.pinimg.com/564x/64/b5/fd/64b5fde9bf1d22a70ae98222ae47596b.jpg'),
-(12, 'Porsche', '911 GT3', 'Silnik 4.0 Benzyna\r\nMoc 510 KM / 470 NM\r\nSkrzynia biegów automatyczna 7-biegowa PDK\r\nNapęd na tylne koła', 'https://i.pinimg.com/564x/db/3f/de/db3fde08b08b227e089f0c7a7b568df8.jpg');
+(12, 'Porsche', '911 GT3', 'Silnik 4.0 Benzyna\r\nMoc 510 KM / 470 NM\r\nSkrzynia biegów automatyczna 7-biegowa PDK\r\nNapęd na tylne koła', 'https://i.pinimg.com/564x/db/3f/de/db3fde08b08b227e089f0c7a7b568df8.jpg'),
+(13, '¯\\_(ツ)_/¯', 'Lightning Mcqueen', 'niezwykły, świadomy samochód, który w świecie wyścigów jest niekwestionowanym mistrzem. Zaprogramowany z najnowocześniejszą sztuczną inteligencją, ten futurystyczny pojazd posiada nie tylko niesamowite umiejętności jezdne, ale także rozwiniętą świadomość ', '../uploads/51blb-5bunL._AC_SL1000_.jpg'),
+(14, 'Porsche', ' Macan T', 'Porsche Macan T 2022 to dynamiczne połączenie elegancji i mocy. To kompaktowe SUV Porsche, które dostarcza emocji z jazdy i wrażeń z podróży, łącząc sportowe dziedzictwo marki z codzienną funkcjonalnością.', '../uploads/img.jpg'),
+(15, 'Cadillac', ' Escalade', 'Duży i szybki', '../uploads/cad.jpg');
 
 -- --------------------------------------------------------
 
@@ -113,7 +116,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `name`, `surname`, `email`, `role_id`, `password`, `ver_code`) VALUES
-(14, 'Admin', 'admin', 'admin@gmail.com', 2, '$argon2id$v=19$m=65536,t=4,p=1$Vms4bUVZWnpndU5USk9RYQ$XIhXGLr9J3ZWAQ0OJap96gQ6v06Wi9vlwMJJsMhm2UA', '219bc3dcd56dc3b44910d263609e304e');
+(14, 'Admin', 'admin', 'admin@gmail.com', 2, '$argon2id$v=19$m=65536,t=4,p=1$Vms4bUVZWnpndU5USk9RYQ$XIhXGLr9J3ZWAQ0OJap96gQ6v06Wi9vlwMJJsMhm2UA', '219bc3dcd56dc3b44910d263609e304e'),
+(15, 'nowy', 'user', 'user@gmail.com', 1, '$argon2id$v=19$m=65536,t=4,p=1$NWgvLlhVMDdUR1EvSW1sQw$SlIQVen+CLvocaN0aBLaxHXsYSbZpIPZAGjuqOArtkk', 'ccb6026efa22a236b83da9bb6c199a6d');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -154,7 +158,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `id_car` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_car` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `rent`
@@ -172,7 +176,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables

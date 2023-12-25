@@ -83,10 +83,7 @@ else{
                     } else {
                         $stmt = $conn->prepare("INSERT INTO rent (date_start, date_end, user_id, car_id) VALUES (?,?,?,?);" );
                         $stmt ->bind_param('ssii',$start_date,$end_date,$_SESSION["auth_user"]["id"],$car_id);
-                        // Dodanie rezerwacji do bazy danych
-                        // $insert_reservation = "INSERT INTO rent (date_start, date_end, user_id, car_id) VALUES ('$start_date', '$end_date', $_SESSION[auth_user][id], $car_id)";
                         if($stmt->execute()){
-                            // if ($conn->query($insert_reservation)) {
                                 echo "<p>Rezerwacja zakończona pomyślnie!</p>";
                             } else {
                                 echo "Błąd podczas rezerwacji: " . $conn->error;

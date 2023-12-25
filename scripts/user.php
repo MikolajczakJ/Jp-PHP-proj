@@ -35,6 +35,16 @@ class User{
             return null;    
         }
     }
+
+    static function findUserById($id,$conn){
+        $stmt= $conn->prepare("SELECT * FROM users where id_user=?");
+        $stmt ->bind_param('s',$id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $row = $result->fetch_assoc();
+            return new User($row["id_user"],$row["name"],$row["surname"],$row["email"],$row["password"],$row["role_id"],$row["ver_code"]); 
+    }
     // dodawanie użytkownika zwraca true jeśli użytkownik zostanie dodany, fale jeśli nie
     static function addUser($user, $conn){
         echo $user->surname;
@@ -49,8 +59,8 @@ class User{
     }
     // aktualizacja użytkownika znajdującego się pod określonym id 
     static function updateUser($userId, $newUser, $conn){
-        $stmt = $conn->prepare("UPDATE users SET name = ?, surname = ?, password = ?  WHERE users.id_user = ?;" );
-        $stmt ->bind_param('sssi',$newUser->name,$newUser->surname,$newUser->password,$userId);
+        $stmt = $conn->prepare("UPDATE users SET name = ?, surname = ?, role_id = ?  WHERE users.id_user = ?;" );
+        $stmt ->bind_param('ssii',$newUser->name,$newUser->surname,$newUser->role,$userId);
         $stmt->execute();
         $stmt->close();
 

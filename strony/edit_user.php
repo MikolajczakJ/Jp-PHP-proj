@@ -14,31 +14,20 @@ if (!isset($_GET['id'])) {
 }
 $userID = $_GET['id'];
 require_once("../scripts/connect.php");
+require_once("../scripts/user.php");
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "SELECT * FROM users WHERE id_user = $userID";
-$result = $conn->query($sql);
-
-if ($result->num_rows === 0) {
-    echo 'User not found.';
-    exit();
-}
-
-$user = $result->fetch_assoc();
+$user = User::findUserById($userID,$conn);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validate and sanitize user input here
     require_once "../scripts/user.php";
     $newFirstName = $_POST['firstname'];
     $newLastName = $_POST['surname'];
-    // $isAdmin = isset($_POST['is_admin']) ? 1 : 0;
+    $role = $_POST['role'] == "admin" ? 2 : 1;
 
     // Update user details in the database
     // Use prepared statements for security in a production environment
-$editUser = new User($userID,$newFirstName,$newLastName,$user["email"],$user["password"]);
+$editUser = new User($userID,$newFirstName,$newLastName,$user->email,$user->password,$role,$user->ver_code);
     User::updateUser($userID,$editUser,$conn);
 }
 
@@ -50,28 +39,32 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit User</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../CSS/offers.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Edytuj użytkownika <?php echo $user->email ?></title>
 </head>
 <body>
-
+<?php require_once "../components/navbar.php"; ?>
     <div class="container">
-        <h2>Edit User</h2>
+        <h2>Edycja użytkownika</h2>
 
         <form method="post" action="">
-            <label for="firstname">First Name:</label>
-            <input type="text" id="firstname" name="firstname" value="<?php echo $user['name']; ?>" required> <br>
+            <label for="firstname">Imię:</label>
+            <input type="text" id="firstname" name="firstname" value="<?php echo $user->name; ?>" required> <br>
 
-            <label for="surname">Last Name:</label>
-            <input type="text" id="surname" name="surname" value="<?php echo $user['surname']; ?>" required><br>
-
-            <!-- <label for="is_admin">Admin:</label>
-            <input type="checkbox" id="is_admin" name="is_admin" <?php echo $user['is_admin'] ? 'checked' : ''; ?>> -->
-
-            <button type="submit">Save Changes</button>
+            <label for="surname">Nazwisko:</label>
+            <input type="text" id="surname" name="surname" value="<?php echo $user->surname; ?>" required><br>
+            <label><input type="radio" name="role" value="user" <?php if($user->role ==1) {echo "checked";} ?>>Użytkownik  </label>
+            <br>
+            <label><input type="radio" name="role" value="admin"<?php if($user->role ==2) {echo "checked";} ?>>Admin</label>
+            <br>
+            <button type="submit">Zapisz zmiany</button>
         </form>
-
-        <a href="index.php">Back to User List</a>
     </div>
 
 </body>

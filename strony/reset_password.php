@@ -79,8 +79,8 @@ if(isset($_SESSION["auth_user"]) && session_status()==2){
       <form action="../scripts/reset_password.php" method="post">
         <label class ="fon" for="email">Email:</label>
         <input type="text" id="email" name="email" required>
-
-        <button type="submit">Wyślij na maila nowe hasło </button>
+        <button type="submit">Wyślij na maila nowe hasło </button> <br>
+        <button onclick="history.back()">Powrót do logowania</button>
       </form>
 
     </div>

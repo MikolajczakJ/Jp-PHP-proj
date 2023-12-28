@@ -17,8 +17,8 @@ class User{
         $this->ver_code = $ver_code;
     }
     // metoda haszująca hasło przy pomocy argon2id
-    static function hashUserPassword($password){
-        return password_hash($password, PASSWORD_ARGON2ID);
+    static function hashUserPassword($password){      
+        return password_hash($password, PASSWORD_DEFAULT);
     }
     // Szuka użytkownika w bazie danych i zwraca jego dane
     static function findUser($email,$password,$conn){

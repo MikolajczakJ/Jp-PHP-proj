@@ -114,10 +114,12 @@ CREATE TABLE `users` (
 --
 -- Dumping data for table `users`
 --
-
+-- Admin haslo: Admin123
+-- User haslo: User123
+-- 
 INSERT INTO `users` (`id_user`, `name`, `surname`, `email`, `role_id`, `password`, `ver_code`) VALUES
-(14, 'Admin', 'admin', 'admin@gmail.com', 2, '$argon2id$v=19$m=65536,t=4,p=1$Vms4bUVZWnpndU5USk9RYQ$XIhXGLr9J3ZWAQ0OJap96gQ6v06Wi9vlwMJJsMhm2UA', '219bc3dcd56dc3b44910d263609e304e'),
-(15, 'nowy', 'user', 'user@gmail.com', 1, '$argon2id$v=19$m=65536,t=4,p=1$NWgvLlhVMDdUR1EvSW1sQw$SlIQVen+CLvocaN0aBLaxHXsYSbZpIPZAGjuqOArtkk', 'ccb6026efa22a236b83da9bb6c199a6d');
+(14, 'Admin', 'admin', 'admin@gmail.com', 2, '$2y$10$Mdep5SxwSlcWM.WmmjQzZ.W6FusDRASJK9clAWjOSjrapIeakRucG', '989f647f2addb68a4d8616aa35e89db6'),
+(15, 'nowy', 'user', 'user@gmail.com', 1, '$2y$10$zvceslaXF9uZvlQtwYoW7Or88VrtZ1bxS1ub4MP157796cC1t6ZOm', '32eca69eb6a228264fce82f20f74de4f');
 
 --
 -- Indeksy dla zrzutów tabel

@@ -90,9 +90,9 @@ class User{
     // dodawanie użytkownika zwraca true jeśli użytkownik zostanie dodany, fale jeśli nie
     static function addUser($user, $conn){
         echo $user->surname;
-        $stmt= $conn->prepare("INSERT INTO `users` (`name`, `surname`, `email`, `password`,`ver_code`) VALUES (?, ?, ?, ?,?);");
+        $stmt= $conn->prepare("INSERT INTO `users` (`name`, `surname`, `email`,`role_id`, `password`,`ver_code`) VALUES (?, ?, ?,?, ?,?);");
         $pass = User::hashUserPassword($user->password);
-        $stmt ->bind_param('sssss',$user->name,$user->surname,$user->email,$pass,$user->ver_code);
+        $stmt ->bind_param('sssiss',$user->name,$user->surname,$user->email,$user->role,$pass,$user->ver_code);
         $stmt->execute();
         $outcome =$stmt->affected_rows==1;
         $stmt->close();
@@ -114,6 +114,20 @@ class User{
         $stmt->close();
 
     }
+    //Rola = -2 Tylko niezalogowani, Rola = -1 Wszyscy (razem z niezalogowanymi), Rola = 0 Tylko zalogowani, Rola = 1 Zwykły user, Rola =2 admin 
+    static function hasPermission($role){
+        if($role < -1){
+            if(!isset($_SESSION["auth_user"])){
+                header("location: ./index.php");
+            }
+            else{
+                if($_SESSION["auth_user"]["role"]!= $role){
+                    header("location: ./index.php");
+                }
+            }
+        }
+    }
+
     static function logInUser($user){
         $_SESSION["auth_user"] = array(
             'ver_code' => $user->ver_code,

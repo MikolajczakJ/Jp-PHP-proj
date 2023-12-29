@@ -1,6 +1,8 @@
 <?php
 require_once "../scripts/connect.php";
+require_once "../scripts/user.php";
 session_start();
+
 if(!isset($_SESSION["auth_user"])){
     header("location: ./index.php");
 }

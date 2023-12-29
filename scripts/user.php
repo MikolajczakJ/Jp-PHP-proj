@@ -114,25 +114,6 @@ class User{
         $stmt->close();
 
     }
-    //Rola = -2 Tylko niezalogowani, Rola = -1 Wszyscy (razem z niezalogowanymi), Rola = 0 Tylko zalogowani, Rola = 1 Zwykły user, Rola =2 admin 
-    static function hasPermission($role){
-        if($role ==-2){
-            if(isset($_SESSION["auth_user"])){
-                header("location: ./index.php");
-            }
-        }
-        elseif($role < -1){
-            if(!isset($_SESSION["auth_user"])){
-                header("location: ./index.php");
-            }
-            elseif($role!=0){
-                if($_SESSION["auth_user"]["role"]!= $role){
-                    header("location: ./index.php");
-                }
-                }
-            }
-    }
-
     static function logInUser($user){
         $_SESSION["auth_user"] = array(
             'ver_code' => $user->ver_code,

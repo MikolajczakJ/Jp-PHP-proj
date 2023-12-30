@@ -111,21 +111,21 @@ if(isset($_SESSION["auth_user"]) && session_status()==2){
 
         <form action="../scripts/register.php" method="post">
             <label class="fon" for="register-firstname">Imię:</label>
-            <input type="text" id="register-firstname" name="register-firstname" required>
+            <input type="text" id="register-firstname" name="register-firstname" value="<?php echo isset($_SESSION["register-data"]["firstname"]) ? $_SESSION["register-data"]["firstname"] : ''; ?>" required>
 
             <?php if (isset($_SESSION["errors"]["firstname"])): ?>
                 <div class="error-message"><?php echo $_SESSION["errors"]["firstname"]; ?></div>
             <?php endif; ?>
 
             <label class="fon" for="register-lastname">Nazwisko:</label>
-            <input type="text" id="register-lastname" name="register-lastname" required>
+            <input type="text" id="register-lastname" name="register-lastname" value="<?php echo isset($_SESSION["register-data"]["lastname"]) ? $_SESSION["register-data"]["lastname"] : ''; ?>" required>
 
             <?php if (isset($_SESSION["errors"]["lastname"])): ?>
                 <div class="error-message"><?php echo $_SESSION["errors"]["lastname"]; ?></div>
             <?php endif; ?>
 
             <label class="fon" for="register-email">Email:</label>
-            <input type="email" id="register-email" name="register-email" required>
+            <input type="email" id="register-email" name="register-email" value="<?php echo isset($_SESSION["register-data"]["email"]) ? $_SESSION["register-data"]["email"] : ''; ?>" required>
 
             <?php if (isset($_SESSION["errors"]["email"])): ?>
                 <div class="error-message"><?php echo $_SESSION["errors"]["email"]; ?></div>
@@ -149,7 +149,8 @@ if(isset($_SESSION["auth_user"]) && session_status()==2){
         </form>
 
         <?php
-        // Wyczyść wszystkie błędy z sesji po ich wyświetleniu
+        // Wyczyść wszystkie błędy i dane z sesji po ich wyświetleniu
+        unset($_SESSION["register-data"]);
         unset($_SESSION["errors"]);
         ?>
     </div>

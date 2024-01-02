@@ -54,15 +54,26 @@ else{
             echo "</form>";
 
             // Obsługa rezerwacji
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reserve_submit'])) {
-                $start_date = $_POST['start_date'];
-                $end_date = $_POST['end_date'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reserve_submit'])) {
+    $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
 
-                if ($start_date > $end_date) {
-                    echo "<p>Data zakończenia rezerwacji nie może być wcześniejsza niż data rozpoczęcia.</p>";
-                } else if ($start_date < date('Y-m-d')) {
-                    echo "<p>Nie można cofać się w czasie - wybierz datę późniejszą niż dzisiaj.</p>";
-                } else {
+    if ($start_date > $end_date) {
+        echo "<p>Data zakończenia rezerwacji nie może być wcześniejsza niż data rozpoczęcia.</p>";
+    } else if ($start_date < date('Y-m-d')) {
+        echo "<p>Nie można cofać się w czasie - wybierz datę późniejszą niż dzisiaj.</p>";
+    } else {
+        $car_id = $_GET['id'];
+
+        // Obliczanie liczby dni
+        $datetime1 = new DateTime($start_date);
+        $datetime2 = new DateTime($end_date);
+        $interval = $datetime1->diff($datetime2);
+        $num_of_days = $interval->format('%a');
+
+        // Obliczanie ceny
+        $price_per_day = 500; // Cena za dobę
+        $price = $num_of_days * $price_per_day;
                     // Sprawdzenie dostępności terminu
                     $check_availability = "SELECT * FROM rent WHERE car_id = $car_id AND ((date_start <= '$start_date' AND date_end >= '$start_date') OR (date_start <= '$end_date' AND date_end >= '$end_date'))";
                     $result_availability = $conn->query($check_availability);
@@ -81,14 +92,14 @@ else{
                     if ($duplicate_found) {
                         echo "<p>Ten termin jest już zarezerwowany.</p>";
                     } else {
-                        $stmt = $conn->prepare("INSERT INTO rent (date_start, date_end, user_id, car_id) VALUES (?,?,?,?);" );
-                        $stmt ->bind_param('ssii',$start_date,$end_date,$_SESSION["auth_user"]["id"],$car_id);
-                        if($stmt->execute()){
-                                echo "<p>Rezerwacja zakończona pomyślnie!</p>";
-                            } else {
-                                echo "Błąd podczas rezerwacji: " . $conn->error;
-                            }
-                            $stmt->close();
+                        $stmt = $conn->prepare("INSERT INTO rent (date_start, date_end, user_id, car_id, price) VALUES (?,?,?,?,?);");
+                        $stmt->bind_param('ssiii', $start_date, $end_date, $_SESSION["auth_user"]["id"], $car_id, $price);
+                        if ($stmt->execute()) {
+                            echo "<p>Rezerwacja zakończona pomyślnie! Cena za wypożyczenie: " . $price . " zł</p>";
+                        } else {
+                            echo "Błąd podczas rezerwacji: " . $conn->error;
+                        }
+                        $stmt->close();
                     }
                 }
             }

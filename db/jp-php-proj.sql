@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 25, 2023 at 01:46 PM
+-- Generation Time: Sty 02, 2024 at 12:32 PM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -65,16 +65,16 @@ CREATE TABLE `rent` (
   `date_start` datetime NOT NULL,
   `date_end` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
-  `car_id` int(11) NOT NULL
+  `car_id` int(11) NOT NULL,
+  `price` float UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `rent`
 --
 
-INSERT INTO `rent` (`id_rent`, `date_start`, `date_end`, `user_id`, `car_id`) VALUES
-(3, '2023-12-27 00:00:00', '2023-12-30 00:00:00', 14, 3),
-(4, '2024-01-01 00:00:00', '2024-01-03 00:00:00', 14, 3);
+INSERT INTO `rent` (`id_rent`, `date_start`, `date_end`, `user_id`, `car_id`, `price`) VALUES
+(13, '2024-01-10 00:00:00', '2024-01-14 00:00:00', 17, 5, 2000);
 
 -- --------------------------------------------------------
 
@@ -114,12 +114,11 @@ CREATE TABLE `users` (
 --
 -- Dumping data for table `users`
 --
--- Admin haslo: Admin123
--- User haslo: User123
--- 
+
 INSERT INTO `users` (`id_user`, `name`, `surname`, `email`, `role_id`, `password`, `ver_code`) VALUES
 (14, 'Admin', 'admin', 'admin@gmail.com', 2, '$2y$10$Mdep5SxwSlcWM.WmmjQzZ.W6FusDRASJK9clAWjOSjrapIeakRucG', '989f647f2addb68a4d8616aa35e89db6'),
-(15, 'nowy', 'user', 'user@gmail.com', 1, '$2y$10$zvceslaXF9uZvlQtwYoW7Or88VrtZ1bxS1ub4MP157796cC1t6ZOm', '32eca69eb6a228264fce82f20f74de4f');
+(15, 'nowy', 'user', 'user@gmail.com', 1, '$2y$10$zvceslaXF9uZvlQtwYoW7Or88VrtZ1bxS1ub4MP157796cC1t6ZOm', '32eca69eb6a228264fce82f20f74de4f'),
+(17, 'Kacper', 'Lo', 'lokietek@o2.pl', 1, '$2y$10$6GdKBFxLS44FzJ52sSA4SOC.DkpSJgLW6jeEFRD7C6EJlFjibjRH.', 'c4bf07039a95f7cd7874931032c5dcd7');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -166,7 +165,7 @@ ALTER TABLE `cars`
 -- AUTO_INCREMENT for table `rent`
 --
 ALTER TABLE `rent`
-  MODIFY `id_rent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_rent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -178,7 +177,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables

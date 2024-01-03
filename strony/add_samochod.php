@@ -58,13 +58,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 <?php  require_once "../components/navbar.php"; ?>
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
-    Marka samochodu: <input type="text" name="brand_name" required><br>
-    Model: <input type="text" name="model" required><br>
-    Opis: <textarea name="description" required></textarea><br>
-    Zdjęcie: <input type="file" name="image" accept="image/*" required><br>
-    <input type="submit" value="Dodaj pojazd">
-</form>
+<div class="car-details">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+        Marka samochodu: <input type="text" name="brand_name" required><br>
+        Model: <input type="text" name="model" required><br>
+        Opis: <textarea name="description" required></textarea><br>
+        Zdjęcie: <input type="file" name="image" accept="image/*" required><br>
+        <input type="submit" value="Dodaj pojazd">
+    </form>
+</div>
+
 
 </body>
 </html>

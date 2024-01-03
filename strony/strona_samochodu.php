@@ -40,15 +40,16 @@ else{
             echo "<img src='" . $row_car['img'] . "' alt='Car Image'>";
             echo "<h2>" . $row_car['brand'] . " " . $row_car['model'] . "</h2>";
             echo "<p>" . $row_car['description'] . "</p>";
+            echo "<p>Cena za dobę: " . $row_car['price'] . " PLN</p>";
             echo "</div>";
 
             // Formularz rezerwacji
             echo "<div class='reservation-form'>";
             echo "<h3>Zarezerwuj</h3>";
             echo "<form method='post'>";
-            echo "<label>Data rozpoczęcia:</label>";
+            echo "<label>Data rozpoczęcia: </label>";
             echo "<input type='date' name='start_date' required><br>";
-            echo "<label>Data zakończenia:</label>";
+            echo "<label>Data zakończenia: </label>";
             echo "<input type='date' name='end_date' required><br>";
             echo "<input type='submit' name='reserve_submit' value='Zarezerwuj'>";
             echo "</form>";

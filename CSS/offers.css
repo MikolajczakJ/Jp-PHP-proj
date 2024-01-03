@@ -4,6 +4,9 @@
     font-family: 'Poppins', sans-serif;
 
 }
+body {
+    background-color: #272222;
+}
 hr {
    border-color: gold;
 }
@@ -125,6 +128,67 @@ a {
     flex-wrap: wrap;
     gap: 20px;
    
+}
+/* Wygląd strona_samochodu.php, user_list.php, car_admin_list.php, add_samochod.php, edit_user.php */
+.car-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 5px;
+    background-color: #272222;
+    color: white;
+    text-align: center;
+}
+.car-details img {
+    width: 400px;
+    height: 400px;
+    margin-bottom: 10px;
+}
+.car-details input, select, button, textarea {
+    background-color: #FFD700;
+    color: #272222;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+.car-details input:hover, select:hover, button:hover, textarea:hover {
+    background-color: #ffea70;
+}
+.car-details a {
+    text-decoration: none;
+    background-color: #FFD700;
+    color: #272222;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 5px;
+    margin: 5px;
+}
+/* Wygląd przycisku stron 1-2 offers.php */
+.offers-page {
+    text-align: center;
+}
+.offers-page a {
+    text-decoration: none;
+    background-color: #FFD700;
+    color: #272222;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.offers-page a:hover {
+    background-color: #ffea70;
+}
+.car-info {
+    
+}
+.reservation-form {
+
 }
 .car {
     position: relative; /* Pozycja dla opisu marki i modelu */

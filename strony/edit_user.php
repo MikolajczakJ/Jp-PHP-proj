@@ -48,7 +48,7 @@ $conn->close();
 </head>
 <body>
 <?php require_once "../components/navbar.php"; ?>
-    <div class="container">
+    <div class="car-details">
         <h2>Edycja użytkownika</h2>
 
         <form method="post" action="">

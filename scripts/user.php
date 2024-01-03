@@ -35,9 +35,20 @@ class User{
             return null;    
         }
     }
+    static function verifyUser($ver_code,$conn){
+        $stmt = $conn->prepare("UPDATE `users` SET `is_verified` = '1' WHERE `users`.`ver_code` = ?"); 
+        $stmt ->bind_param('s',$ver_code);
+        $stmt->execute();
+        $stmt->close();
+        // if(password_verify($password,$row['password'])){
+        //     return new User($row["id_user"],$row["name"],$row["surname"],$row["email"],$row["password"],$row["role_id"],$row["ver_code"]); 
+        // }
+        // else{
+        //     return null;    
+        // }
+    }
     static function confirmAccount($mail,$user)
     {
-        //tutaj jeszcze muszę zmienić wartość w tableli użytkownicy na verified ( trzeba też to pole dodać)
         $mail->addAddress("$user->email", "$user->name". " $user->surname");     //Add a recipient
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Potwierdź swoje konto';
@@ -114,25 +125,6 @@ class User{
         $stmt->close();
 
     }
-    //Rola = -2 Tylko niezalogowani, Rola = -1 Wszyscy (razem z niezalogowanymi), Rola = 0 Tylko zalogowani, Rola = 1 Zwykły user, Rola =2 admin 
-    static function hasPermission($role){
-        if($role ==-2){
-            if(isset($_SESSION["auth_user"])){
-                header("location: ./index.php");
-            }
-        }
-        elseif($role < -1){
-            if(!isset($_SESSION["auth_user"])){
-                header("location: ./index.php");
-            }
-            elseif($role!=0){
-                if($_SESSION["auth_user"]["role"]!= $role){
-                    header("location: ./index.php");
-                }
-                }
-            }
-    }
-
     static function logInUser($user){
         $_SESSION["auth_user"] = array(
             'ver_code' => $user->ver_code,

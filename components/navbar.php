@@ -4,7 +4,7 @@
                     <i class='bx bx-x' onclick="hideMenu()"></i>    
                     <ul>
                         <?php 
-                        if(isset($_SESSION["auth_user"]) &&$_SESSION["auth_user"]["role"]==2){
+                        if(isset($_SESSION["auth_user"]) && $_SESSION["auth_user"]["role"]==2){
                             echo '<li> <a href="index.php"> Strona główna </a> </li>';   
                             echo '<li> <a href="user_list.php"> Lista użytkowników </a> </li>';
                             echo '<li> <a href="car_admin_list.php"> Lista samochodów </a> </li>';

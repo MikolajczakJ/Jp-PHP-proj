@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors["password2"] = "Hasła nie są identyczne";
     }
     // Oczyszczanie password tylko duże litery, małe litery i cyfry
-    if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/", $password)) {
+    if (!preg_match('/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()-_+=])[A-Za-z\d!@#$%^&*()-_+=]{6,}$/', $password)) {
         $errors["password"] = "Nieprawidłowy format hasła <br> Minimum 6 znaków w tym <br> 1 duża litera, 1 mała litera i 1 cyfra";
     }
     // Sprawdzenie, czy wystąpiły jakiekolwiek błędy

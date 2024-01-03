@@ -32,7 +32,7 @@ CREATE TABLE `cars` (
   `brand` varchar(60) NOT NULL,
   `model` varchar(60) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `img` varchar(255) NOT NULL
+  `img` varchar(255) NOT NULL,
   `price` INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -40,7 +40,7 @@ CREATE TABLE `cars` (
 -- Dumping data for table `cars`
 --
 
-INSERT INTO `cars` (`id_car`, `brand`, `model`, `description`, `img`) VALUES
+INSERT INTO `cars` (`id_car`, `brand`, `model`, `description`, `img`, `price`) VALUES
 (1, 'BMW', 'M5 Competition xDrive 2023', '4.4 V8, 625 KM, 750 Nm z 8-biegową przekładnią automatyczną i napędem na wszystkie koła, przyspieszenie 0-100 km/h: 3,4 s, prędkość maksymalna: 250 km/h, średnie zużycie paliwa: 11,1-11,3 l/100 km.', 'https://i.pinimg.com/564x/90/c4/71/90c47122b54397c32883aa4ab6f24665.jpg', 500),
 (3, 'Mercedes-Benz', 'E63 AMG S 2023', '4,0-litrowy silnik V8, 603 koni mechanicznych', 'https://i.pinimg.com/564x/9e/d8/cb/9ed8cbbf8e2c7bf2c49d468b7a19239c.jpg', 500),
 (4, 'Lamborghini', 'Huracan STO', 'MOC (CV) / MOC (KW) \r\n640 CV / 470 kW\r\nMAKSYMALNA PRĘDKOŚĆ 310 km/h \r\n0-100 KM/H w 3,0 s \r\nRok produkcji: 2022', 'https://i.pinimg.com/564x/5a/4d/ac/5a4dacd7a78d9657a017369cf66eae6c.jpg', 500),

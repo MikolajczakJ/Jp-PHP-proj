@@ -1,6 +1,6 @@
 <?php session_start();
-require_once "../scripts/mailer.php";
-require_once "../scripts/user.php"; ?>
+require_once "../scripts/user.php";
+require_once "../scripts/mailer.php"; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,8 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reserve_submit'])) {
     } else {
         echo "Brak wybranego samochodu.";
     }
-
-    $conn->close();
+$conn->close();
     ?>
 </div>
 <?php } ?>

@@ -66,9 +66,11 @@
             $total_pages = ceil($total_results / $results_per_page);
 
             // Wyświetlenie linków do kolejnych stron
+            echo "<div class='offers-page'>";
             for ($i = 1; $i <= $total_pages; $i++) {
                 echo "<a href='?page=$i'>$i</a> ";
             }
+            echo "</div>";
 
             $conn->close();
             ?>

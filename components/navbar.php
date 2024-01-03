@@ -13,10 +13,10 @@
                         ?>
                         <li><a href="index.php">Strona Główna</a></li>
                         <li><a href="offers.php">Oferta</a></li>
-                        <li><a href="#">Regulamin</a></li>
                         <?php
                         }
                             if(isset($_SESSION["auth_user"])){
+                                echo '<li><a>' . $_SESSION['auth_user']['name'] . '</a></li>';
                                 echo '<li><a href="../scripts/logout.php">Wyloguj się</a></li>';
 
                             }

@@ -23,7 +23,7 @@ if(!isset($_SESSION["auth_user"])){
 </head>
 <body>
     <?php require_once "../components/navbar.php"; ?>
-    <div class="container">
+    <div class="car-details">
         <h2>Car List</h2>
         <a href="add_samochod.php">Dodaj samochód do oferty</a>
         <?php include '../scripts/car_scripts.php'; ?>

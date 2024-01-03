@@ -26,7 +26,7 @@ else{
 </head>
 <body>
 <?php require_once "../components/navbar.php"; ?>
-    <div class="container">
+    <div class="car-details">
         <h2>User List</h2>
 
         <!-- Search form -->

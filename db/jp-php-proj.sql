@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sty 02, 2024 at 12:32 PM
+-- Generation Time: Sty 03, 2024 at 01:43 PM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -33,7 +33,7 @@ CREATE TABLE `cars` (
   `model` varchar(60) NOT NULL,
   `description` varchar(255) NOT NULL,
   `img` varchar(255) NOT NULL,
-  `price` INT NOT NULL
+  `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -75,7 +75,9 @@ CREATE TABLE `rent` (
 --
 
 INSERT INTO `rent` (`id_rent`, `date_start`, `date_end`, `user_id`, `car_id`, `price`) VALUES
-(13, '2024-01-10 00:00:00', '2024-01-14 00:00:00', 17, 5, 2000);
+(13, '2024-01-10 00:00:00', '2024-01-14 00:00:00', 17, 5, 2000),
+(14, '2024-01-11 00:00:00', '2024-01-12 00:00:00', 18, 4, 500),
+(15, '2024-01-18 00:00:00', '2024-01-26 00:00:00', 18, 4, 4000);
 
 -- --------------------------------------------------------
 
@@ -109,17 +111,19 @@ CREATE TABLE `users` (
   `email` varchar(60) NOT NULL,
   `role_id` tinyint(4) NOT NULL DEFAULT 1,
   `password` varchar(150) NOT NULL,
-  `ver_code` varchar(50) NOT NULL
+  `ver_code` varchar(50) NOT NULL,
+  `is_verified` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `name`, `surname`, `email`, `role_id`, `password`, `ver_code`) VALUES
-(14, 'Admin', 'admin', 'admin@gmail.com', 2, '$2y$10$Mdep5SxwSlcWM.WmmjQzZ.W6FusDRASJK9clAWjOSjrapIeakRucG', '989f647f2addb68a4d8616aa35e89db6'),
-(15, 'nowy', 'user', 'user@gmail.com', 1, '$2y$10$zvceslaXF9uZvlQtwYoW7Or88VrtZ1bxS1ub4MP157796cC1t6ZOm', '32eca69eb6a228264fce82f20f74de4f'),
-(17, 'Kacper', 'Lo', 'lokietek@o2.pl', 1, '$2y$10$6GdKBFxLS44FzJ52sSA4SOC.DkpSJgLW6jeEFRD7C6EJlFjibjRH.', 'c4bf07039a95f7cd7874931032c5dcd7');
+INSERT INTO `users` (`id_user`, `name`, `surname`, `email`, `role_id`, `password`, `ver_code`, `is_verified`) VALUES
+(14, 'Admin', 'admin', 'admin@gmail.com', 2, '$2y$10$Mdep5SxwSlcWM.WmmjQzZ.W6FusDRASJK9clAWjOSjrapIeakRucG', '989f647f2addb68a4d8616aa35e89db6', 0),
+(15, 'nowy', 'user', 'user@gmail.com', 1, '$2y$10$zvceslaXF9uZvlQtwYoW7Or88VrtZ1bxS1ub4MP157796cC1t6ZOm', '32eca69eb6a228264fce82f20f74de4f', 0),
+(17, 'Kacper', 'Lo', 'lokietek@o2.pl', 1, '$2y$10$6GdKBFxLS44FzJ52sSA4SOC.DkpSJgLW6jeEFRD7C6EJlFjibjRH.', 'c4bf07039a95f7cd7874931032c5dcd7', 0),
+(18, 'jak', 'mik', 'jakubmikolajczak1ti@gmail.com', 1, '$2y$10$4W9sLz94ami9YE3x6q/2CeA4chR8TUyJWQyQzXva0Tfty2a8nwqk.', 'd919baa7909381e9929929ecd1718a16', 1);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -166,7 +170,7 @@ ALTER TABLE `cars`
 -- AUTO_INCREMENT for table `rent`
 --
 ALTER TABLE `rent`
-  MODIFY `id_rent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_rent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -178,7 +182,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables

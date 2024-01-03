@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sty 03, 2024 at 01:43 PM
+-- Generation Time: Sty 03, 2024 at 03:43 PM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -58,6 +58,26 @@ INSERT INTO `cars` (`id_car`, `brand`, `model`, `description`, `img`, `price`) V
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `cities`
+--
+
+CREATE TABLE `cities` (
+  `id` int(11) NOT NULL,
+  `address` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cities`
+--
+
+INSERT INTO `cities` (`id`, `address`) VALUES
+(1, 'Poznań, ul. Św.Marcin 1'),
+(2, 'Warszawa, ul. Złota 55'),
+(3, 'Gdańsk, ul. Nowaka 1');
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `rent`
 --
 
@@ -67,6 +87,7 @@ CREATE TABLE `rent` (
   `date_end` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   `car_id` int(11) NOT NULL,
+  `city_id` int(11) NOT NULL,
   `price` float UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -74,10 +95,19 @@ CREATE TABLE `rent` (
 -- Dumping data for table `rent`
 --
 
-INSERT INTO `rent` (`id_rent`, `date_start`, `date_end`, `user_id`, `car_id`, `price`) VALUES
-(13, '2024-01-10 00:00:00', '2024-01-14 00:00:00', 17, 5, 2000),
-(14, '2024-01-11 00:00:00', '2024-01-12 00:00:00', 18, 4, 500),
-(15, '2024-01-18 00:00:00', '2024-01-26 00:00:00', 18, 4, 4000);
+INSERT INTO `rent` (`id_rent`, `date_start`, `date_end`, `user_id`, `car_id`, `city_id`, `price`) VALUES
+(13, '2024-01-10 00:00:00', '2024-01-14 00:00:00', 17, 5, 1, 2000),
+(14, '2024-01-11 00:00:00', '2024-01-12 00:00:00', 18, 4, 2, 500),
+(15, '2024-01-18 00:00:00', '2024-01-26 00:00:00', 18, 4, 3, 4000),
+(16, '2024-01-23 00:00:00', '2024-01-30 00:00:00', 18, 1, 1, 3500),
+(17, '2024-01-23 00:00:00', '2024-01-30 00:00:00', 18, 1, 1, 3500),
+(18, '2024-01-17 00:00:00', '2024-01-24 00:00:00', 18, 6, 2, 3500),
+(19, '2024-02-01 00:00:00', '2024-02-03 00:00:00', 18, 6, 2, 1000),
+(20, '2024-01-24 00:00:00', '2024-01-27 00:00:00', 18, 7, 1, 1500),
+(21, '2024-03-14 00:00:00', '2024-04-19 00:00:00', 18, 7, 1, 18000),
+(22, '2024-01-03 00:00:00', '2024-01-04 00:00:00', 18, 7, 1, 500),
+(23, '2024-01-09 00:00:00', '2024-01-09 00:00:00', 18, 7, 1, 0),
+(24, '2024-01-09 00:00:00', '2024-01-09 00:00:00', 18, 7, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -123,7 +153,8 @@ INSERT INTO `users` (`id_user`, `name`, `surname`, `email`, `role_id`, `password
 (14, 'Admin', 'admin', 'admin@gmail.com', 2, '$2y$10$Mdep5SxwSlcWM.WmmjQzZ.W6FusDRASJK9clAWjOSjrapIeakRucG', '989f647f2addb68a4d8616aa35e89db6', 0),
 (15, 'nowy', 'user', 'user@gmail.com', 1, '$2y$10$zvceslaXF9uZvlQtwYoW7Or88VrtZ1bxS1ub4MP157796cC1t6ZOm', '32eca69eb6a228264fce82f20f74de4f', 0),
 (17, 'Kacper', 'Lo', 'lokietek@o2.pl', 1, '$2y$10$6GdKBFxLS44FzJ52sSA4SOC.DkpSJgLW6jeEFRD7C6EJlFjibjRH.', 'c4bf07039a95f7cd7874931032c5dcd7', 0),
-(18, 'jak', 'mik', 'jakubmikolajczak1ti@gmail.com', 1, '$2y$10$4W9sLz94ami9YE3x6q/2CeA4chR8TUyJWQyQzXva0Tfty2a8nwqk.', 'd919baa7909381e9929929ecd1718a16', 1);
+(18, 'jak', 'mik', 'jakubmikolajczak1ti@gmail.com', 1, '$2y$10$4W9sLz94ami9YE3x6q/2CeA4chR8TUyJWQyQzXva0Tfty2a8nwqk.', 'd919baa7909381e9929929ecd1718a16', 1),
+(19, 'ad', 'admin', 'admin1@gmail.com', 2, '$2y$10$fLHbUtBY.Et4xVrs0ny3HeMdkWhv6AWQz9xrUClJQgGvdUyb5Hvo2', 'aea4638573ff7acd08257bd9a0cabcd5', 1);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -136,12 +167,19 @@ ALTER TABLE `cars`
   ADD PRIMARY KEY (`id_car`);
 
 --
+-- Indeksy dla tabeli `cities`
+--
+ALTER TABLE `cities`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeksy dla tabeli `rent`
 --
 ALTER TABLE `rent`
   ADD PRIMARY KEY (`id_rent`),
   ADD KEY `users` (`user_id`),
-  ADD KEY `cars` (`car_id`) USING BTREE;
+  ADD KEY `cars` (`car_id`) USING BTREE,
+  ADD KEY `city_id` (`city_id`);
 
 --
 -- Indeksy dla tabeli `role`
@@ -167,10 +205,16 @@ ALTER TABLE `cars`
   MODIFY `id_car` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT for table `cities`
+--
+ALTER TABLE `cities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `rent`
 --
 ALTER TABLE `rent`
-  MODIFY `id_rent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_rent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -182,7 +226,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
@@ -193,7 +237,8 @@ ALTER TABLE `users`
 --
 ALTER TABLE `rent`
   ADD CONSTRAINT `rent_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `cars` (`id_car`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `rent_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `rent_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rent_ibfk_3` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`);
 
 --
 -- Constraints for table `users`

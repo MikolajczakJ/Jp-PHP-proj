@@ -16,7 +16,13 @@
 <body>
 <?php require_once "../components/navbar.php"; 
 if(!isset($_SESSION["auth_user"])){
-echo "<p> Aby zarerezwować samochód najpierw musisz się zalogować </p>" ;
+echo "<div class = 'container'>";
+    echo "<div class ='popup'>";
+        echo "<h2> Zaloguj się </h2>";
+        echo "<p>Aby sprawdzić oferte zaloguj się</p>";
+        echo "<a href='./offers.php' class='text-btn'>wróć do ofert</a>";
+    echo "</div>";
+echo "</div>";
 }
 else{
 ?>

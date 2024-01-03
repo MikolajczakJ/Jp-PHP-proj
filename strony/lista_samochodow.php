@@ -38,7 +38,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo "<div class='car-container'>";
-    while ($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {  
         echo "<div class='car'>";
         echo "<a href='strona_samochodu.php?id=" . $row["id_car"] . "'>";
         echo "<img src='" . $row["img"] . "' alt='Car Image'>";

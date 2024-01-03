@@ -33,8 +33,6 @@ nav img{
     display: inline-block;
     padding: 8px 12px;
     position: relative;
-    color: white;
-    font-size: 23px;
 }
 .nav-links ul li a{
     color: white;

@@ -57,6 +57,15 @@ class User{
         $mail->send();
         header("location: ../strony/index.php");
     }
+    static function sentRentInfo($mail,$user, $row_car, $start, $end, $price)
+    {
+        $mail->addAddress("$user[email]", "$user[name]". " $user[surname]");     //Add a recipient
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = 'Złożona rezerwacja';
+        $mail->Body    = 'Witaj,'. $user["name"].' twoja rezerwacja samochodu ' .$row_car['brand']. ' '. $row_car['model'] .'('.$start.' do '.$end.') została zapisana wstaw się w wybranej lokalizacji '.$start.' aby zapłacić za wypożyczenie ('.$price.')';
+        $mail->AltBody    = 'Witaj,'. $user["name"].' twoja rezerwacja samochodu ' .$row_car['brand']. ' '. $row_car['model'] .'('.$start.' do '.$end.') została zapisana wstaw się w wybranej lokalizacji '.$start.' aby zapłacić za wypożyczenie ('.$price.')';
+        $mail->send();
+    }
     static function resetPassword($mail, $user_mail,$nowe_haslo,$conn)
     {
         $mail->addAddress("$user_mail", "$user_mail"); 

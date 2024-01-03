@@ -1,8 +1,10 @@
-<?php session_start(); ?>
+<?php session_start();
+require_once "../scripts/mailer.php";
+require_once "../scripts/user.php"; ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Szczegóły Samochodu</title>
+    <title>Rezerwacja</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/offers.css">
@@ -34,6 +36,8 @@ else{
 
         if ($result_car->num_rows > 0) {
             $row_car = $result_car->fetch_assoc();
+            $sql_city = "SELECT id, address FROM Cities";
+            $result = $conn->query($sql_city);
 
             // Wyświetlenie informacji o samochodzie
             echo "<div class='car-info'>";
@@ -51,7 +55,15 @@ else{
             echo "<input type='date' name='start_date' required><br>";
             echo "<label>Data zakończenia: </label>";
             echo "<input type='date' name='end_date' required><br>";
-            echo "<input type='submit' name='reserve_submit' value='Zarezerwuj'>";
+            echo '<label for="city">Wybierz lokalizację:</label>';
+            echo '<select name="city" id="city">';
+            
+            while ($city_row = $result->fetch_assoc()) {
+                echo '<option value="' . $city_row['id'] . '">' . $city_row['address'] . '</option>';
+            }
+        
+            echo '</select>';
+            echo "<br><br><input type='submit' name='reserve_submit' value='Zarezerwuj'>";
             echo "</form>";
 
             // Obsługa rezerwacji
@@ -93,9 +105,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reserve_submit'])) {
                     if ($duplicate_found) {
                         echo "<p>Ten termin jest już zarezerwowany.</p>";
                     } else {
-                        $stmt = $conn->prepare("INSERT INTO rent (date_start, date_end, user_id, car_id, price) VALUES (?,?,?,?,?);");
-                        $stmt->bind_param('ssiii', $start_date, $end_date, $_SESSION["auth_user"]["id"], $car_id, $price);
+                        $stmt = $conn->prepare("INSERT INTO rent (date_start, date_end, user_id, car_id,city_id, price) VALUES (?,?,?,?,?,?);");
+                        $stmt->bind_param('ssiiii', $start_date, $end_date, $_SESSION["auth_user"]["id"], $car_id,$_POST["city"], $price);
                         if ($stmt->execute()) {
+                            User::sentRentInfo($mail,$_SESSION["auth_user"],$row_car, $start_date, $end_date, $price);
                             echo "<p>Rezerwacja zakończona pomyślnie! Cena za wypożyczenie: " . $price . " zł</p>";
                         } else {
                             echo "Błąd podczas rezerwacji: " . $conn->error;

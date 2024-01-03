@@ -16,7 +16,7 @@
                         <?php
                         }
                             if(isset($_SESSION["auth_user"])){
-                                echo '<li><a>' . $_SESSION['auth_user']['name'] . '</a></li>';
+                                echo '<li><a href="./rent_List.php">' . $_SESSION['auth_user']['name'] . '</a></li>';
                                 echo '<li><a href="../scripts/logout.php">Wyloguj się</a></li>';
 
                             }

@@ -184,12 +184,6 @@ a {
 .offers-page a:hover {
     background-color: #ffea70;
 }
-.car-info {
-    
-}
-.reservation-form {
-
-}
 .car {
     position: relative; /* Pozycja dla opisu marki i modelu */
     margin-bottom: 20px;

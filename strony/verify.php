@@ -1,10 +1,12 @@
 <?php
+session_start();
 require_once "../scripts/user.php";
 require_once "../scripts/connect.php";
 if (isset($_POST['verify'])) {
     
     $verificationCode = $_GET['ver_code'];
     User::verifyUser($verificationCode,$conn);
+    $_SESSION["verify_user"] = "Weryfikacja przebiegła pomyślnie!";
     header("location: ./index.php");
 }
 ?>

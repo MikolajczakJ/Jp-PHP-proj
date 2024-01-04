@@ -2,11 +2,11 @@
 session_start();
 require_once("./connect.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $firstname = $_POST["register-firstname"];
-    $lastname = $_POST["register-lastname"];
-    $email = $_POST["register-email"];
-    $password = $_POST["register-password"];
-    $password2 = $_POST["register-password2"];
+    $firstname = trim($_POST["register-firstname"]);
+    $lastname = trim($_POST["register-lastname"]);
+    $email = trim($_POST["register-email"]);
+    $password = trim($_POST["register-password"]);
+    $password2 = trim($_POST["register-password2"]);
     $errors = array();
     $_SESSION["register-data"] = array();
     // Walidacja pól
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     // Oczyszczanie password tylko duże litery, małe litery i cyfry
     if (!preg_match('/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()-_+=])[A-Za-z\d!@#$%^&*()-_+=]{6,}$/', $password)) {
-        $errors["password"] = "Nieprawidłowy format hasła <br> Minimum 6 znaków w tym <br> 1 duża litera, 1 mała litera i 1 cyfra";
+        $errors["password"] = "Nieprawidłowy format hasła <br> Minimum 6 znaków w tym <br> 1 duża litera, 1 mała litera, <br> 1 cyfra i/lub 1 znak specjalny";
     }
     // Sprawdzenie, czy wystąpiły jakiekolwiek błędy
     if (!empty($errors)) {
@@ -58,10 +58,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once("./mailer.php");
     require_once("./user.php");
     $verification_code = bin2hex(random_bytes(16));
-    $user = new User(0,$_POST["register-firstname"],$_POST["register-lastname"],$_POST["register-email"],$_POST["register-password"],1,$verification_code);
+    $user = new User(0, $firstname, $lastname, $email, $password, 1, $verification_code);
     if(User::addUser($user,$conn)){
         $_SESSION["success"] = "Pomyślnie założono konto";
-        $user = User::findUserByMail($_POST["register-email"],$conn);
+        $user = User::findUserByMail($email, $conn);
         User::logInUser($user);
         User::confirmAccount($mail,$user);
         header("location:../strony/index.php");

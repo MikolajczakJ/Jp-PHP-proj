@@ -1,4 +1,10 @@
 <?php session_start(); ?>
+<?php if (isset($_SESSION["verify_user"])): ?>
+    <div class="verify-user"><?php echo $_SESSION["verify_user"]; ?></div>
+<?php
+    unset($_SESSION["verify_user"]);
+    endif;
+?>
 
 <!DOCTYPE html>
 <html lang="en">

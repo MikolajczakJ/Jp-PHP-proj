@@ -21,9 +21,13 @@ if(!isset($_SESSION["auth_user"])){
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-<?php require_once "../components/navbar.php";
-require_once "../scripts/rentList.php";
-    }}
-?>
+<?php require_once "../components/navbar.php"; ?>
+<div class="car-details">
+    <?php
+    require_once "../scripts/rentList.php";
+        }}
+    ?>
+</div>
+
 </body>
 </html>

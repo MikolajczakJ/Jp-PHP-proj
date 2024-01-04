@@ -52,8 +52,8 @@ class User{
         $mail->addAddress("$user->email", "$user->name". " $user->surname");     //Add a recipient
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Potwierdź swoje konto';
-        $mail->Body    = 'Witaj,'. $user->name.' potwierdź swoje konto <a href = "localhost/JPPHPPROJ/Jp-PHP-proj/strony/verify.php?ver_code='.$user->ver_code.'"> tutaj </a>';
-        $mail->AltBody = 'Wejdź na localhost/JPPHPPROJ/Jp-PHP-proj/strony/verify.php?ver_code='.$user->ver_code.' aby potwierdzić swoje konto';
+        $mail->Body    = 'Witaj,'. $user->name.' potwierdź swoje konto <a href = "localhost/Jp-PHP-proj/strony/verify.php?ver_code='.$user->ver_code.'"> tutaj </a>';
+        $mail->AltBody = 'Wejdź na localhost/Jp-PHP-proj/strony/verify.php?ver_code='.$user->ver_code.' aby potwierdzić swoje konto';
         $mail->send();
         header("location: ../strony/index.php");
     }

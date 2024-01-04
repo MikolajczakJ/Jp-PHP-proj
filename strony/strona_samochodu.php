@@ -61,7 +61,7 @@ else{
             echo "<input type='date' name='start_date' required><br>";
             echo "<label>Data zakończenia: </label>";
             echo "<input type='date' name='end_date' required><br>";
-            echo '<label for="city">Wybierz lokalizację:</label>';
+            echo '<label for="city">Wybierz lokalizację: </label>';
             echo '<select name="city" id="city">';
             
             while ($city_row = $result->fetch_assoc()) {

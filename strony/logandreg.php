@@ -83,8 +83,8 @@ if(isset($_SESSION["auth_user"]) && session_status()==2){
     <div class="form-container">
       <h2 class ="fon" >Logowanie</h2>
         <?php
-          if(isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
-            echo '<p style="color: red;">' . $_SESSION['error'] . '</p>';
+          if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+            echo '<div class="error-message">' . $_SESSION["error"] . '</div>';
             unset($_SESSION["error"]);
           }
         ?>

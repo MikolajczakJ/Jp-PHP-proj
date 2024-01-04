@@ -1,6 +1,8 @@
 <?php session_start();
 require_once "../scripts/user.php";
-require_once "../scripts/mailer.php"; ?>
+require_once "../scripts/mailer.php";
+require_once "../scripts/connect.php"; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +19,7 @@ require_once "../scripts/mailer.php"; ?>
 </head>
 <body>
 <?php require_once "../components/navbar.php"; 
+
 if(!isset($_SESSION["auth_user"])){
 echo "<div class = 'container'>";
     echo "<div class ='popup'>";
@@ -30,9 +33,7 @@ else{
 ?>
 
 <div class="car-details">
-    <?php
-    require_once('../scripts/connect.php');
-
+<?php
     if (isset($_GET['id'])) {
         $car_id = $_GET['id'];
         
@@ -92,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reserve_submit'])) {
 
         // Obliczanie ceny
         $price_per_day = 500; // Cena za dobę
-        $price = $num_of_days * $price_per_day;
+        $price = ($num_of_days +1) * $price_per_day;
                     // Sprawdzenie dostępności terminu
                     $check_availability = "SELECT * FROM rent WHERE car_id = $car_id AND ((date_start <= '$start_date' AND date_end >= '$start_date') OR (date_start <= '$end_date' AND date_end >= '$end_date'))";
                     $result_availability = $conn->query($check_availability);
@@ -115,7 +116,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reserve_submit'])) {
                         $stmt->bind_param('ssiiii', $start_date, $end_date, $_SESSION["auth_user"]["id"], $car_id,$_POST["city"], $price);
                         if ($stmt->execute()) {
                             User::sentRentInfo($mail,$_SESSION["auth_user"],$row_car, $start_date, $end_date, $price);
-                            echo "<p>Rezerwacja zakończona pomyślnie! Cena za wypożyczenie: " . $price . " zł</p>";
+                            $_SESSION["rent_success"] =  "Rezerwacja zakończona pomyślnie! Cena za wypożyczenie: " . $price . " zł";
+                            header("location: ./offers.php");
                         } else {
                             echo "Błąd podczas rezerwacji: " . $conn->error;
                         }

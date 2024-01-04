@@ -1,10 +1,16 @@
 <?php session_start(); ?>
-
+<?php if (isset($_SESSION["rent_success"])): ?>
+    <div class="verify-user"><?php echo $_SESSION["rent_success"]; ?></div>
+<?php
+    unset($_SESSION["rent_success"]);
+    endif;
+?>
  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/main.css">
     <link rel="stylesheet" href="../CSS/offers.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +27,7 @@
         <?php
             // Połączenie z bazą danych
             require_once('../scripts/connect.php');
-
+            
             // Parametry paginacji
             $results_per_page = 9; // liczba wyników na stronę
 

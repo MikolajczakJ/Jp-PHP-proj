@@ -12,11 +12,12 @@ else{
     }
 }
 function addRecord($brand_name, $model, $description, $image_path,$conn) {
-    
-    $stmt = $conn->prepare("INSERT INTO cars (brand, model, description, img) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $brand_name, $model, $description, $image_path);
+    $price = 500;
+    $stmt = $conn->prepare("INSERT INTO cars (brand, model, description, img, price) VALUES (?, ?, ?, ?,?)");
+    $stmt->bind_param("ssssi", $brand_name, $model, $description, $image_path,$price);
     
     if ($stmt->execute()) {
+        $_SESSION["add_car"] = "Pomyślnie dodano samochód";
         return true;
     } else {
         return false;
@@ -28,8 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $model = $_POST["model"];
     $description = $_POST["description"];
     
-    // Process image file
-    $target_dir = "../uploads/"; // Change this to your desired directory
+    $target_dir = "../uploads/"; 
     $image_path = $target_dir . basename($_FILES["image"]["name"]);
     
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $image_path)) {
@@ -49,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/main.css">
     <link rel="stylesheet" href="../CSS/offers.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,6 +60,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Dodaj samochód do oferty</title>
 </head>
 <body>
+<?php if (isset($_SESSION["add_car"])): ?>
+    <div class="verify-user"><?php echo $_SESSION["add_car"]; ?></div>
+<?php
+    unset($_SESSION["add_car"]);
+    endif;
+?>
 <?php  require_once "../components/navbar.php"; ?>
 <div class="car-details">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">

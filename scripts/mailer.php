@@ -14,7 +14,7 @@ try {
     $mail->Host       = 'smtp.gmail.com';                   
     $mail->SMTPAuth   = true;  
     $mail->Username = 'testycovid7@gmail.com';
-    $mail->Password = 'apqfuadiktnlneem';
+    // $mail->Password = WYWALONE ŻEBY BOTY SIĘ NIE LOGOWAŁY;
     $mail->SMTPSecure = 'tls';                              
     $mail->Port = 587;                                   
     $mail->setFrom('testycovid7@gmail.com', 'RentIt');
